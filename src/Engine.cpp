@@ -9,7 +9,7 @@ ems::Engine::Engine()
 {
 	windowWidth = 0;
 	windowHeight = 0;
-	window = nullptr;
+	render_sys = nullptr;
 	Display = NULL;
 	displayMode = nullptr;
 }
@@ -22,7 +22,7 @@ bool ems::Engine::init()
 	if (!set_cursor())
 		return false;
 
-	render_sys = std::make_unique<Render>("A Day of Feb", windowWidth, windowHeight, config);
+	render_sys = std::make_unique<Render>("A Day of Feb", windowWidth, windowHeight);
 
 }
 bool ems::Engine::initSDL()

@@ -1,6 +1,6 @@
-#include "src/Core/RenderManager.h"
+#include "RenderManager.h"
 #include "src/Gameplay/ttf.h"
-#include "third_party/magic_enum/magic_enum.hpp"
+//#include "third_party/magic_enum/magic_enum.hpp"
 #include "src/Common/idConverter.h"
 #include "src/Common/jsonManager.h"
 

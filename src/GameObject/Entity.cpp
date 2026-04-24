@@ -8,7 +8,7 @@
 
 
 Entity::Entity(EntityConfig config, Render& window_0)
-	:visible(true), alpha(255), pos({config.x,config.y}), texture(nullptr), currentFrame(0),texture2(nullptr),layer(config.layerID)
+	:visible(true), alpha(255), pos({config.x,config.y}), texture(nullptr), currentFrame(0),texture2(nullptr),layer(config.layer)
 {
 	action = config.actionID;
 	seriesID = config.series_num;
@@ -121,11 +121,11 @@ bool Entity::getVisible()
 	return visible;
 }
 
-void Entity::setLayer(layer_ID layerID)
+void Entity::setLayer(int layerID)
 {
 	layer = layerID;
 }
-layer_ID Entity::getLayer()
+int Entity::getLayer()
 {
 	return layer;
 }
@@ -148,7 +148,7 @@ Uint8 Entity::getAlpha()
 {
 	return alpha;
 }
-action_ID Entity::getAction()
+std::string Entity::getAction()
 {
 	return action;
 }

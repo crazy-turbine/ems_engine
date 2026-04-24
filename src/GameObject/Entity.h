@@ -1,6 +1,6 @@
 #pragma once
 #include "src/Common/struct.h"
-#include "src/Gameplay/button_behavior.h"
+//#include "src/Gameplay/button_behavior.h"
 #include "src/Common/enum.h"
 #include <SDL_image.h>
 
@@ -26,18 +26,18 @@ public:
 	SDL_Rect getCurrentFrame();
 	void setVisible(bool visibility);
 	bool getVisible();
-	void setLayer(layer_ID layerID);
-	layer_ID getLayer();
+	void setLayer(int layerID);
+	int getLayer();
 	void setAlpha(Uint8 alpha_v);
 	Uint8 getAlpha();
-	action_ID getAction();
+	std::string getAction();
 	std::string getSlideButton();
 	int getSeriesID();
 	int geterror();
 
 private:
-	action_ID action = action_ID::null;
-	layer_ID layer;
+	std::string action = "";
+	int layer;
 	Vector2f pos;
 	Vector2f O_pos;
 	std::string slide_buttonID;
