@@ -20,3 +20,15 @@ enum class layer_ID
 	on_UIbutton,
 	top
 };
+enum class line_type
+{
+	single,
+	multi
+};
+enum class text_type
+{
+	default_static,
+	default_dynamic,
+	dialog,
+	control_tips
+};

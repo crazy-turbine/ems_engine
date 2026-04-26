@@ -2,6 +2,7 @@
 #include <string>
 #include <SDL3/SDL.h>
 #include<memory>
+#include "src/Common/idConverter.h"
 
 class audio;
 class Render;

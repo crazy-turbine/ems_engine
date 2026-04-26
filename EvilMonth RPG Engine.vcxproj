@@ -19,25 +19,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Common\idConverter.cpp" />
     <ClCompile Include="src\GameObject\Entity.cpp" />
+    <ClCompile Include="src\GameObject\Sprite.cpp" />
+    <ClCompile Include="src\GameObject\ttf.cpp" />
     <ClCompile Include="src\Output\Render.cpp" />
     <ClCompile Include="src\Output\RenderManager.cpp" />
     <ClCompile Include="src\Resource\jsonManager.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Output\Audio.cpp" />
     <ClCompile Include="src\Resource\ResourceManager.cpp" />
+    <ClCompile Include="src\Scene\scene.cpp" />
+    <ClCompile Include="src\Scene\sceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h" />
     <ClInclude Include="src\Common\enum.h" />
+    <ClInclude Include="src\Common\idConverter.h" />
     <ClInclude Include="src\Common\struct.h" />
     <ClInclude Include="src\GameObject\Entity.h" />
+    <ClInclude Include="src\GameObject\Sprite.h" />
+    <ClInclude Include="src\GameObject\ttf.h" />
     <ClInclude Include="src\Output\Render.h" />
     <ClInclude Include="src\Output\RenderManager.h" />
     <ClInclude Include="src\Resource\json.h" />
     <ClInclude Include="src\Resource\jsonManager.h" />
     <ClInclude Include="src\Output\Audio.h" />
     <ClInclude Include="src\Resource\ResourceManager.h" />
+    <ClInclude Include="src\Scene\scene.h" />
+    <ClInclude Include="src\Scene\sceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

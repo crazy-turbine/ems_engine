@@ -1,9 +1,12 @@
 #pragma once
+#include <SDL3/SDL.h>
+#include "enum.h"
+#include <string>
+#include <vector>
 
 struct RenderConfig
 {
-	std::string texture_path;
-	std::string sceneID;
+	SDL_Texture* Texture;
 
 	float x = 0;
 	float y = 0;
@@ -30,7 +33,7 @@ struct Vector2f
 	}
 	void print()
 	{
-		std::cout << x << "," << y << std::endl;
+		//std::cout << x << "," << y << std::endl;
 	}
 	float x, y;
 };
@@ -42,7 +45,7 @@ struct EntityConfig
 	std::string slide_button;
 	float x, y, w, h;
 	int series_num = 0;
-	std::string path1, path2, path3, path4;
+	std::vector<std::string> TexturePath;
 };
 
 struct JsonTarget
@@ -50,7 +53,7 @@ struct JsonTarget
 	std::string jsonPath;
 	std::string jsptr;
 };
-/*
+
 struct TextConfig
 {
 	line_type Ltype;
@@ -62,4 +65,3 @@ struct TextConfig
 	std::vector<JsonTarget> default_text;
 	std::vector<JsonTarget> haveValue_text;
 };
-*/

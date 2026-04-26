@@ -1,7 +1,8 @@
 #pragma once
 #include "src/Common/struct.h"
+#include <vector>
 //#include "src/Gameplay/button_behavior.h"
-#include "src/Common/enum.h"
+//#include "src/Common/enum.h"
 #include <SDL_image.h>
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
@@ -34,15 +35,18 @@ public:
 	std::string getSlideButton();
 	int getSeriesID();
 	int geterror();
+	RenderConfig& getRenderConfig();
 
 private:
 	std::string action = "";
+	RenderConfig RenderData;
 	int layer;
 	Vector2f pos;
 	Vector2f O_pos;
 	std::string slide_buttonID;
-	std::shared_ptr<SDL_Texture> texture, texture2, texture3, texture4;
-	int tex_use = 1;
+	std::vector<std::shared_ptr<SDL_Texture>> Texture;
+	int TextureIndex = 0;
+	//int tex_use = 1;
 	int seriesID = 0;
 	SDL_Rect currentFrame;
 	bool visible = false;

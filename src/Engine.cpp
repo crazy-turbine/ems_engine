@@ -1,5 +1,6 @@
 #include "include/ems_engine/Engine.h"
 #include "src/Output/Audio.h"
+#include "src/Output/Render.h"
 #include "src/Resource/jsonManager.h"
 #include <SDL3/SDL_ttf.h>
 #include <SDL_image.h>
@@ -13,6 +14,7 @@ ems::Engine::Engine()
 	Display = NULL;
 	displayMode = nullptr;
 }
+
 bool ems::Engine::init()
 {
 	if (!initSDL())

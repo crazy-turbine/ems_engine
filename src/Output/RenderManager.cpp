@@ -1,8 +1,10 @@
 #include "RenderManager.h"
-#include "src/Gameplay/ttf.h"
+#include "src/GameObject/ttf.h"
 //#include "third_party/magic_enum/magic_enum.hpp"
 #include "src/Common/idConverter.h"
-#include "src/Common/jsonManager.h"
+#include "src/Resource/jsonManager.h"
+#include "src/GameObject/Entity.h"
+#include "src/Output/Render.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 //上面這段保佑這個專案乖乖，勿刪
@@ -13,7 +15,7 @@ void RenderManager::EntityRender(Entity& entity, Render& window)
 {
 	if (entity.getVisible())
 	{
-		window.RenderEntity(entity);
+		window.RenderEntity(entity.getRenderConfig());
 	}
 
 }
