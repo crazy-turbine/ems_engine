@@ -1,7 +1,7 @@
-#include "src/Gameplay/scene.h"
+#include "scene.h"
+#include <iostream>
 
-
-void Scene::addEntity(entity_type type, std::string entityID,EntityConfig& configValue,Render& window)
+void Scene::addEntity(std::string type, std::string entityID,EntityConfig& configValue,Render& window)
 {
 	EntityMap[type].emplace
 	(
@@ -37,7 +37,7 @@ void Scene::eachEntity(std::function<void(Entity*, std::string key)> action)
 		}
 	}
 }
-void Scene::OneEntityMap(entity_type type, std::function<void(Entity*)> action)
+void Scene::OneEntityMap(std::string type, std::function<void(Entity*)> action)
 {
 	if (EntityMap.contains(type))
 	{
@@ -47,7 +47,7 @@ void Scene::OneEntityMap(entity_type type, std::function<void(Entity*)> action)
 		}
 	}
 }
-void Scene::OneEntityMap(entity_type type, std::function<void(Entity*, std::string key)> action)
+void Scene::OneEntityMap(std::string type, std::function<void(Entity*, std::string key)> action)
 {
 	if (EntityMap.contains(type))
 	{
@@ -58,7 +58,7 @@ void Scene::OneEntityMap(entity_type type, std::function<void(Entity*, std::stri
 	}
 }
 
-Entity* Scene::getEntity(entity_type type, std::string ID)
+Entity* Scene::getEntity(std::string type, std::string ID)
 {
 	if (EntityMap.contains(type))
 	{

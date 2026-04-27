@@ -32,3 +32,13 @@ enum class text_type
 	dialog,
 	control_tips
 };
+enum class scene_ani_state
+{
+	aniIN,
+	aniOUT,
+	None
+};
+enum class keyboard_code
+{
+
+};

@@ -20,7 +20,7 @@ public:
 
 	static bool runRender(Render& window, SceneManager& uiManager);
 	static void EntityRender(Entity& entity, Render& window);
-	static void refreshUIText(const GameSetting& config, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter);
+	static void refreshUIText(std::string language, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter);
 private:
 	static std::vector<Entity*> renderQueue;
 };

@@ -4,11 +4,14 @@
 #include <SDL_image.h>
 //#include "src/Common/function.h"
 #include "src/Common/enum.h"
+#include <memory>
+
+class Render;
 
 class ttf
 {
 public:
-	//
+	
 	ttf(TextConfig config);
 	~ttf()
 	{
@@ -24,7 +27,7 @@ public:
 	std::vector<JsonTarget>& getDefaultTextTarget();
 	std::vector<JsonTarget>& getHaveValueTextTarget();
 
-	
+
 
 private:
 	void single_text();

@@ -5,6 +5,7 @@
 #include "src/Resource/jsonManager.h"
 #include "src/GameObject/Entity.h"
 #include "src/Output/Render.h"
+#include "src/Scene/SceneManager.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 //上面這段保佑這個專案乖乖，勿刪
@@ -27,7 +28,7 @@ bool RenderManager::runRender(Render& window, SceneManager& uiManager)
 	
 	uiManager.getGlobalScene()->OneEntityMap
 	(
-		entity_type::back,
+		"back",
 		[&](Entity* entity)
 		{
 			if (entity)
@@ -66,7 +67,7 @@ bool RenderManager::runRender(Render& window, SceneManager& uiManager)
 	);
 	uiManager.getGlobalScene()->OneEntityMap
 	(
-		entity_type::object,
+		"object",
 		[&](Entity* entity)
 		{
 			if (entity)
@@ -78,13 +79,13 @@ bool RenderManager::runRender(Render& window, SceneManager& uiManager)
 	return true;
 }
 
-void RenderManager::refreshUIText(const GameSetting& config, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter)
+void RenderManager::refreshUIText(std::string language, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter)
 {
 	json text;
 	std::string path = "text/";
-	path += magic_enum::enum_name(config.Language);
+	path += language;
 	path += "/ui/";
-	path += magic_enum::enum_name(uiManager.getSceneID());
+	path += uiManager.getSceneID();
 	path += ".json";
 	openJson(text, path);
 

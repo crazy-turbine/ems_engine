@@ -1,4 +1,5 @@
 #include "sceneManager.h"
+#include <iostream>
 //#include "third_party/magic_enum/magic_enum.hpp"
 
 
@@ -15,25 +16,25 @@ Scene* SceneManager::getCurrentScene()
 }
 Scene* SceneManager::getGlobalScene()
 {
-	auto scene_IDIt = SceneMap.find(scene_ID::global);
+	auto scene_IDIt = SceneMap.find("global");
 	if (scene_IDIt == SceneMap.end())
 	{
 		std::cout << "[ERROR]:Scene Not Create!(getGlobal)" << std::endl;
 		return nullptr;
 	}
-	return SceneMap[scene_ID::global].get();
+	return SceneMap["global"].get();
 }
-scene_ID SceneManager::getSceneID()
+std::string SceneManager::getSceneID()
 {
 	return currentScene;
 }
-void SceneManager::setSceneID(scene_ID sceneID)
+void SceneManager::setSceneID(std::string sceneID)
 {
 	currentScene = sceneID;
 	auto scene_IDIt = SceneMap.find(sceneID);
 	if (scene_IDIt == SceneMap.end())
 	{
-		std::cout << "[Create]:Create Scene:"<<magic_enum::enum_name(sceneID) << std::endl;
+		std::cout << "[Create]:Create Scene:" << sceneID << std::endl;
 		SceneMap.emplace(currentScene, std::make_unique<Scene>());
 	}
 }
@@ -41,11 +42,11 @@ void SceneManager::UpdateScene()
 {
 	setSceneID(targetScene);
 }
-scene_ID SceneManager::getTargetSceneID()
+std::string SceneManager::getTargetSceneID()
 {
 	return targetScene;
 }
-void SceneManager::setTargetSceneID(scene_ID sceneID)
+void SceneManager::setTargetSceneID(std::string sceneID)
 {
 	targetScene = sceneID;
 }

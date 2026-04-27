@@ -65,3 +65,11 @@ struct TextConfig
 	std::vector<JsonTarget> default_text;
 	std::vector<JsonTarget> haveValue_text;
 };
+struct EngineState
+{
+	float mouseX = 0;
+	float mouseY = 0;
+	bool isDragging = false;
+	Entity* TargetButton = nullptr;
+	bool isRefreshText = false;
+};

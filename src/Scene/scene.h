@@ -9,13 +9,13 @@
 class Scene
 {
 public:
-	void addEntity(entity_type type, std::string entityID, EntityConfig& configValue, Render& window);
+	void addEntity(std::string type, std::string entityID, EntityConfig& configValue, Render& window);
 	void addText(text_type type, std::string textID, TextConfig& configValue);
 	void eachEntity(std::function<void(Entity*)> action);
 	void eachEntity(std::function<void(Entity*, std::string key)> action);
-	void OneEntityMap(entity_type type, std::function<void(Entity*)> action);
-	void OneEntityMap(entity_type type, std::function<void(Entity*, std::string key)> action);
-	Entity* getEntity(entity_type type, std::string ID);
+	void OneEntityMap(std::string type, std::function<void(Entity*)> action);
+	void OneEntityMap(std::string type, std::function<void(Entity*, std::string key)> action);
+	Entity* getEntity(std::string type, std::string ID);
 	void eachText(std::function<void(ttf*)> action);
 	void eachText(std::function<void(ttf*, std::string key)> action);
 	void OneTextMap(text_type type, std::function<void(ttf*)> action);
@@ -24,5 +24,5 @@ public:
 private:
 	std::unordered_map < text_type, std::unordered_map<std::string, std::unique_ptr<ttf>>> TextMap;
 
-	std::unordered_map<entity_type,std::unordered_map<std::string, std::unique_ptr<Entity>>> EntityMap;
+	std::unordered_map<std::string,std::unordered_map<std::string, std::unique_ptr<Entity>>> EntityMap;
 };

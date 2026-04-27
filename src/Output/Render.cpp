@@ -131,7 +131,7 @@ void Render::RenderEntity(RenderConfig config)
 
 	
 
-	SDL_RenderTextureRotated(renderer, readTexture(config.texture_path, config.sceneID, *this).get(), nullptr, &dst, config.angle, center, fliptype);
+	SDL_RenderTextureRotated(renderer, config.Texture, nullptr, &dst, config.angle, center, fliptype);
 }
 
 void Render::renderText(SDL_Texture* Texture, SDL_FRect render)
