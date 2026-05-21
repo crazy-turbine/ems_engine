@@ -1,5 +1,5 @@
-#include "src/Core/animationManager.h"
-#include "src/Core/timerManager.h"
+#include "animationManager.h"
+#include "src/Timer/timerManager.h"
 
 bool scene_animationIN(scene_ani_state& state, SceneManager& uiManager)
 {

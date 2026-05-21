@@ -1,4 +1,4 @@
-#include "src/Core/timer.h"
+#include "src/Timer/timer.h"
 #include <cmath>
 
 timer::timer(float second)

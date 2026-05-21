@@ -18,8 +18,8 @@ void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager
     {
         if (event.key.key == SDLK_F11)
         {
-            config.fullscreen = !config.fullscreen;
-            window.fullscreen(config.fullscreen);
+            state.fullscreen = !state.fullscreen;
+            window.fullscreen(state.fullscreen);
         }
     }
 

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Action\Action.cpp" />
+    <ClCompile Include="src\Action\button_behavior.cpp" />
     <ClCompile Include="src\Common\Event.cpp" />
     <ClCompile Include="src\Common\idConverter.cpp" />
     <ClCompile Include="src\GameObject\animationManager.cpp" />
@@ -41,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h" />
+    <ClInclude Include="src\Action\Action.h" />
+    <ClInclude Include="src\Action\button_behavior.h" />
     <ClInclude Include="src\Common\enum.h" />
     <ClInclude Include="src\Common\Event.h" />
     <ClInclude Include="src\Common\idConverter.h" />

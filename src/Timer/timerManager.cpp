@@ -1,4 +1,4 @@
-#include "src/Core/timerManager.h"
+#include "src/Timer/timerManager.h"
 
 std::unordered_map < std::string, std::unique_ptr<timer>> TimerMap;
 

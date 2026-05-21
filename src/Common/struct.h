@@ -72,4 +72,7 @@ struct EngineState
 	bool isDragging = false;
 	Entity* TargetButton = nullptr;
 	bool isRefreshText = false;
+	bool Vsync = true;
+	bool fullscreen = true;
+	bool mouseGrab = true;
 };
