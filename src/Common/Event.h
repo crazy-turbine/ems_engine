@@ -7,5 +7,5 @@
 
 class audio;
 
-void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager, scene_ani_state& aniState, audio& sound_sys);
+void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager, EngineState& state, scene_ani_state& aniState, audio& sound_sys);
 //void home_SDLevent(const SDL_Event& event, Render& window, bool& app, bool& home);

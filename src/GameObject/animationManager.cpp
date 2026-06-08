@@ -1,5 +1,7 @@
 #include "animationManager.h"
 #include "src/Timer/timerManager.h"
+#include "src/Scene/SceneManager.h"
+#include "src/Common/enum.h"
 
 bool scene_animationIN(scene_ani_state& state, SceneManager& uiManager)
 {
@@ -10,17 +12,17 @@ bool scene_animationIN(scene_ani_state& state, SceneManager& uiManager)
 		if (!TimerMap["scene_animationIN"]->checkTime())
 		{
 			float x = std::lerp(3840.0f, -1920.0f, TimerMap["scene_animationIN"]->getEasedProgress());
-			float y = uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->getPos().y;
+			float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
 			//std::cout << "[IN] animation set position" << std::endl;
 			//std::cout << "setup:" << ani.x << "," << ani.y << std::endl;
-			uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->setPos(x, y);
+			uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
 			return true;
 		}
 		else
 		{
 			float x = -3840.0f;
-			float y = uiManager.getGlobalScene()->getEntity(entity_type::object,"animation")->getPos().y;
-			uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->setPos(x, y);
+			float y = uiManager.getGlobalScene()->getEntity("object","animation")->getPos().y;
+			uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
 			deleteTimer("scene_animationIN");
 			state = scene_ani_state::aniOUT;
 			return false;
@@ -39,17 +41,17 @@ bool scene_animationOUT(scene_ani_state& state, SceneManager& uiManager)
 		if (!TimerMap["scene_animationOUT"]->checkTime())
 		{
 			float x = std::lerp(-1920.0f, 3840.0f, TimerMap["scene_animationOUT"]->getEasedProgress());
-			float y = uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->getPos().y;
+			float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
 			//std::cout << "[OUT] animation set position" << std::endl;
 			//std::cout << "home:" << ani.x << "," << ani.y << std::endl;
-			uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->setPos(x, y);
+			uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
 			return true;
 		}
 		else
 		{
 			float x = 3840.0f;
-			float y = uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->getPos().y;
-			uiManager.getGlobalScene()->getEntity(entity_type::object, "animation")->setPos(x, y);
+			float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
+			uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
 			deleteTimer("scene_animationOUT");
 			state = scene_ani_state::None;
 			return false;
@@ -63,7 +65,7 @@ bool scene_animationOUT(scene_ani_state& state, SceneManager& uiManager)
 
 bool intro_animationIN(bool &intro, SceneManager& uiManager)
 {
-	if (!intro || uiManager.getSceneID() != scene_ID::home)
+	if (!intro || uiManager.getSceneID() != "home")
 		return false;
 	if (createTimer("intro_animation_wait", 1.5))
 	{

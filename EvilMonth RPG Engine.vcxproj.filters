@@ -78,6 +78,9 @@
     <ClCompile Include="src\Action\button_behavior.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\Common\JsonValue.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h">
@@ -150,6 +153,9 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Action\button_behavior.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\JsonValue.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

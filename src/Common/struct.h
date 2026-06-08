@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+class Entity;
+
 struct RenderConfig
 {
 	SDL_Texture* Texture;
@@ -75,4 +77,6 @@ struct EngineState
 	bool Vsync = true;
 	bool fullscreen = true;
 	bool mouseGrab = true;
+	std::string Language = "no";
+	float volume = 0.0f;
 };
