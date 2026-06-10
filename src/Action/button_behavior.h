@@ -23,19 +23,15 @@ public:
 
 	
 	void setKeyboardActionGroup(keyboard_code code, std::string group_name, std::string condition);
-
-	
 	void setMouseActionGroup(mouse_code code, std::string group_name, std::string condition);
-
-	
 	void setGamepadActionGroup(gamepad_code code, std::string group_name, std::string condition);
 
 private:
 	void ActionExcute(std::string action);
 
-	std::map<keyboard_code, std::map<std::string, std::string>> Kaction_map;
-	std::map<mouse_code, std::map<std::string, std::string>> Maction_map;
-	std::map<gamepad_code, std::map<std::string, std::string>> Gaction_map;
+	std::map<keyboard_code, std::map<std::string, std::vector<std::string>>> Kaction_map;
+	std::map<mouse_code, std::map<std::string, std::vector<std::string>>> Maction_map;
+	std::map<gamepad_code, std::map<std::string, std::vector<std::string>>> Gaction_map;
 
 	std::map<keyboard_code, std::function<std::string()>> Kcondition_map;
 	std::map<mouse_code, std::function<std::string()>> Mcondition_map;
