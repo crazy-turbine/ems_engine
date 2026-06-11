@@ -108,20 +108,21 @@ void button_behavior::setGamepadConditionSelector(gamepad_code code, std::functi
 }
 void button_behavior::setKeyboardActionGroup(keyboard_code code, std::string group_name, std::string condition)
 {
-	auto [it, inserted] = Kaction_map.try_emplace(code);
-	it->second.insert_or_assign(group_name, condition);
+	auto [itC, itC_inserted] = Kaction_map.try_emplace(code);
+	auto [itA, itA_inserted] = itC->second.try_emplace(condition);
+	itA->second.push_back(group_name);
 }
 void button_behavior::setMouseActionGroup(mouse_code code, std::string group_name, std::string condition)
 {
-	auto [it, inserted] = Maction_map.try_emplace(code);
-	it->second.insert_or_assign(group_name, condition);
-	//Maction_map.at(code).at(condition) = group_name;
+	auto [itC, itC_inserted] = Maction_map.try_emplace(code);
+	auto [itA, itA_inserted] = itC->second.try_emplace(condition);
+	itA->second.push_back(group_name);
 }
 void button_behavior::setGamepadActionGroup(gamepad_code code, std::string group_name, std::string condition)
 {
-	auto [it, inserted] = Gaction_map.try_emplace(code);
-	it->second.insert_or_assign(group_name, condition);
-	//Gaction_map.at(code).at(condition) = group_name;
+	auto [itC, itC_inserted] = Gaction_map.try_emplace(code);
+	auto [itA, itA_inserted] = itC->second.try_emplace(condition);
+	itA->second.push_back(group_name);
 }
 void button_behavior::ActionExcute(std::string action)
 {
