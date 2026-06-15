@@ -5,6 +5,7 @@
 #include <functional>
 
 class SceneManager;
+struct KeyboardConditionalKey;
 
 class button_behavior
 {
@@ -29,7 +30,8 @@ public:
 private:
 	void ActionExcute(std::string action);
 
-	std::map<keyboard_code, std::map<std::string, std::vector<std::string>>> Kaction_map;
+	//std::map<keyboard_code, std::map<std::string, std::vector<std::string>>> Kaction_map;
+	std::map<keyboard_code, std::function<std::vector<std::string>(key_state KeyState)>> Kaction_map;
 	std::map<mouse_code, std::map<std::string, std::vector<std::string>>> Maction_map;
 	std::map<gamepad_code, std::map<std::string, std::vector<std::string>>> Gaction_map;
 

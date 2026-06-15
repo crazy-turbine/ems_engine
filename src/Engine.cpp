@@ -2,6 +2,8 @@
 #include "src/Output/Audio.h"
 #include "src/Output/Render.h"
 #include "src/Resource/jsonManager.h"
+#include "src/Action/button_behavior.h"
+#include "src/Input/InputManager.h"
 #include <SDL3/SDL_ttf.h>
 #include <SDL_image.h>
 #include <iostream>
@@ -11,10 +13,13 @@ ems::Engine::Engine()
 	windowWidth = 0;
 	windowHeight = 0;
 	render_sys = nullptr;
+	sound_sys = nullptr;
+	input_sys = nullptr;
+	button_def = nullptr;
 	Display = NULL;
 	displayMode = nullptr;
 }
-
+ems::Engine::Engine() = default;
 bool ems::Engine::init()
 {
 	if (!initSDL())
@@ -25,7 +30,15 @@ bool ems::Engine::init()
 		return false;
 
 	render_sys = std::make_unique<Render>("A Day of Feb", windowWidth, windowHeight);
+	button_def = std::make_unique<button_behavior>();
+	input_sys = std::make_unique<InputManager>(button_def.get());
 
+	return true;
+}
+void ems::Engine::run()
+{
+	input_sys->InputRefresh();
+	
 }
 bool ems::Engine::initSDL()
 {

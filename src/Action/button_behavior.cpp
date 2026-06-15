@@ -4,6 +4,7 @@
 #include "src/Scene/sceneManager.h"
 #include "src/Resource/jsonManager.h"
 #include "src/Action/Action.h"
+#include "src/Common/struct.h"
 #include <cmath>
 
 void button_behavior::ButtonExcute(keyboard_code code)

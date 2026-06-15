@@ -38,6 +38,12 @@ enum class scene_ani_state
 	aniOUT,
 	None
 };
+enum class key_state
+{
+	down,
+	hold,
+	up
+};
 enum class keyboard_code
 {
 	Unknown = 0,

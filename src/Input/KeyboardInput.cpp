@@ -3,22 +3,38 @@
 #include "src/Common/enum.h"
 
 
-bool KeyboardInput::getState(std::vector<keyboard_code>& key_list)
+bool KeyboardInput::UpdateState(std::vector<std::pair<keyboard_code, key_state>>& key_list)
 {
 	key_list.clear();
 	int numkeys;
-	const bool* state = SDL_GetKeyboardState(&numkeys);
+	CurrState = SDL_GetKeyboardState(&numkeys);
 	for (int i = 0; i < numkeys; i++)
 	{
-		if (!state[i])
+		bool isCurrDown = CurrState[i];
+		bool isPrevDown = PrevState[i];
+		if (!isCurrDown && (isCurrDown == isPrevDown))
 		{
 			continue;
 		}
 		else if (keyboard_code keycode = KeycodeConvert(i); keycode != keyboard_code::Unknown)
 		{
-			key_list.push_back(keycode);
+			key_state PressState;
+			if (isCurrDown == isPrevDown)
+			{
+				PressState = key_state::hold;
+			}
+			if (isCurrDown && !isPrevDown)
+			{
+				PressState = key_state::down;
+			}
+			if (!isCurrDown && isPrevDown)
+			{
+				PressState = key_state::up;
+			}
+			key_list.push_back({ keycode, PressState });
 		}
 	}
+	std::copy(CurrState, CurrState + numkeys, PrevState.begin());
 	return !key_list.empty();
 }
 

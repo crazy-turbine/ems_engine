@@ -31,6 +31,7 @@
     <ClCompile Include="src\GameObject\ttf.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\Input\KeyboardInput.cpp" />
+    <ClCompile Include="src\Input\MouseInput.cpp" />
     <ClCompile Include="src\Output\Render.cpp" />
     <ClCompile Include="src\Output\RenderManager.cpp" />
     <ClCompile Include="src\Resource\jsonManager.cpp" />
@@ -45,6 +46,7 @@
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h" />
     <ClInclude Include="src\Action\Action.h" />
+    <ClInclude Include="src\Action\BehaviorConditionSelector.h" />
     <ClInclude Include="src\Action\button_behavior.h" />
     <ClInclude Include="src\Common\enum.h" />
     <ClInclude Include="src\Common\Event.h" />
@@ -58,6 +60,7 @@
     <ClInclude Include="src\GameObject\ttf.h" />
     <ClInclude Include="src\Input\InputManager.h" />
     <ClInclude Include="src\Input\KeyboardInput.h" />
+    <ClInclude Include="src\Input\MouseInput.h" />
     <ClInclude Include="src\Output\Render.h" />
     <ClInclude Include="src\Output\RenderManager.h" />
     <ClInclude Include="src\Resource\json.h" />
@@ -122,12 +125,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Visual Studio\SDL files\SDL3-3.2.18\include;E:\Visual Studio\SDL files\SDL3_image-3.2.4\include;E:\Visual Studio\SDL files\SDL3_mixer-unoffical\include;E:\Visual Studio\SDL files\SDL3_ttf-3.1.0\include;E:\Visual Studio\utfcpp-4.0.6\source;E:\Visual Studio\SDL files\SDL3-3.2.18\include;C:\Visual Studio\SDL files\SDL3_image-3.2.4\include;C:\Visual Studio\SDL files\SDL3_mixer-unoffical\include;C:\Visual Studio\SDL files\SDL3_ttf-3.1.0\include;C:\Visual Studio\utfcpp-4.0.6\source;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Visual Studio\SDL files\SDL3-3.2.18\lib\x64;E:\Visual Studio\SDL files\SDL3_image-3.2.4\lib\x64;E:\Visual Studio\SDL files\SDL3_mixer-unoffical\lib\x64;E:\Visual Studio\SDL files\SDL3_ttf-3.1.0\lib\x64;C:\Visual Studio\SDL files\SDL3-3.2.18\lib\x64;C:\Visual Studio\SDL files\SDL3_image-3.2.4\lib\x64;C:\Visual Studio\SDL files\SDL3_mixer-unoffical\lib\x64;C:\Visual Studio\SDL files\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>E:\Visual Studio\SDL files\SDL3-3.2.18\include;E:\Visual Studio\SDL files\SDL3_image-3.2.4\include;E:\Visual Studio\SDL files\SDL3_mixer-unoffical\include;E:\Visual Studio\SDL files\SDL3_ttf-3.1.0\include;E:\Visual Studio\utfcpp-4.0.6\source;E:\Visual Studio\SDL files\SDL3-3.2.18\include;C:\Visual Studio\SDL files\SDL3_image-3.2.4\include;C:\Visual Studio\SDL files\SDL3_mixer-unoffical\include;C:\Visual Studio\SDL files\SDL3_ttf-3.1.0\include;C:\Visual Studio\utfcpp-4.0.6\source;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Visual Studio\SDL files\SDL3-3.2.18\lib\x64;E:\Visual Studio\SDL files\SDL3_image-3.2.4\lib\x64;E:\Visual Studio\SDL files\SDL3_mixer-unoffical\lib\x64;E:\Visual Studio\SDL files\SDL3_ttf-3.1.0\lib\x64;C:\Visual Studio\SDL files\SDL3-3.2.18\lib\x64;C:\Visual Studio\SDL files\SDL3_image-3.2.4\lib\x64;C:\Visual Studio\SDL files\SDL3_mixer-unoffical\lib\x64;C:\Visual Studio\SDL files\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -172,7 +175,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)third_party\SDL\SDL3-3.2.18\include;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\include;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\include;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\include;$(ProjectDir)third_party\utfcpp-4.0.6\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -195,7 +198,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)third_party\SDL\SDL3-3.2.18\include;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\include;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\include;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\include;$(ProjectDir)third_party\utfcpp-4.0.6\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>

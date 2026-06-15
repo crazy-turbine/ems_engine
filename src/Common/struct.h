@@ -80,3 +80,18 @@ struct EngineState
 	std::string Language = "no";
 	float volume = 0.0f;
 };
+
+struct KeyboardConditionalKey
+{
+	keyboard_code code;
+	key_state state;
+	std::string condition;
+
+	bool operator ==(const KeyboardConditionalKey& other) const
+	{
+		return
+			code == other.code &&
+			state == other.state &&
+			condition == other.condition;
+	}
+};

@@ -14,14 +14,6 @@ void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager
     {
         uiManager.setTargetSceneID("game_exit");
     }
-    if (event.type == SDL_EVENT_KEY_DOWN)
-    {
-        if (event.key.key == SDLK_F11)
-        {
-            state.fullscreen = !state.fullscreen;
-            window.fullscreen(state.fullscreen);
-        }
-    }
 
     if (event.type == SDL_EVENT_MOUSE_MOTION)
     {
