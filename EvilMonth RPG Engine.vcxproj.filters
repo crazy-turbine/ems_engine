@@ -84,6 +84,9 @@
     <ClCompile Include="src\Input\MouseInput.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\Action\ActionPolicy.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h">
@@ -164,7 +167,13 @@
     <ClInclude Include="src\Input\MouseInput.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Action\BehaviorConditionSelector.h">
+    <ClInclude Include="src\Action\ActionPolicy.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Action\ActionPolicyManager.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\toHash.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Action\Action.cpp" />
+    <ClCompile Include="src\Action\ActionPolicy.cpp" />
     <ClCompile Include="src\Action\button_behavior.cpp" />
     <ClCompile Include="src\Common\Event.cpp" />
     <ClCompile Include="src\Common\idConverter.cpp" />
@@ -46,13 +47,15 @@
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h" />
     <ClInclude Include="src\Action\Action.h" />
-    <ClInclude Include="src\Action\BehaviorConditionSelector.h" />
+    <ClInclude Include="src\Action\ActionPolicy.h" />
+    <ClInclude Include="src\Action\ActionPolicyManager.h" />
     <ClInclude Include="src\Action\button_behavior.h" />
     <ClInclude Include="src\Common\enum.h" />
     <ClInclude Include="src\Common\Event.h" />
     <ClInclude Include="src\Common\idConverter.h" />
     <ClInclude Include="src\Common\JsonValue.h" />
     <ClInclude Include="src\Common\struct.h" />
+    <ClInclude Include="src\Common\toHash.h" />
     <ClInclude Include="src\GameObject\animationManager.h" />
     <ClInclude Include="src\GameObject\Create.h" />
     <ClInclude Include="src\GameObject\Entity.h" />
@@ -124,10 +127,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</LibraryPath>
@@ -175,7 +175,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)third_party\SDL\SDL3-3.2.18\include;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\include;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\include;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\include;$(ProjectDir)third_party\utfcpp-4.0.6\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)third_party\SDL\SDL3-3.2.18\include;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\include;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\include;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\include;$(ProjectDir)third_party\utfcpp-4.0.6\source;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -185,6 +185,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_mixer.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
