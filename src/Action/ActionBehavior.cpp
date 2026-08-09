@@ -60,26 +60,6 @@ namespace ems_engine
 	{
 		action_group.insert_or_assign(group_name, group_function);
 	}
-	
-
-	void ActionBehavior::setKeyboardActionGroup(keyboard_code code, std::string group_name, std::string condition)
-	{
-		auto [itC, itC_inserted] = Kaction_map.try_emplace(code);
-		auto [itA, itA_inserted] = itC->second.try_emplace(condition);
-		itA->second.push_back(group_name);
-	}
-	void ActionBehavior::setMouseActionGroup(mouse_code code, std::string group_name, std::string condition)
-	{
-		auto [itC, itC_inserted] = Maction_map.try_emplace(code);
-		auto [itA, itA_inserted] = itC->second.try_emplace(condition);
-		itA->second.push_back(group_name);
-	}
-	void ActionBehavior::setGamepadActionGroup(gamepad_code code, std::string group_name, std::string condition)
-	{
-		auto [itC, itC_inserted] = Gaction_map.try_emplace(code);
-		auto [itA, itA_inserted] = itC->second.try_emplace(condition);
-		itA->second.push_back(group_name);
-	}
 	void ActionBehavior::ActionExcute(std::string action_groupID)
 	{
 		if (auto it = action_group.find(action_groupID); it != action_group.end())

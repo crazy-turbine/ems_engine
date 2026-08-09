@@ -4,14 +4,16 @@
 #include<memory>
 #include "src/Common/idConverter.h"
 
-class audio;
-class Render;
-class InputManager;
-class ActionBehavior;
-class ActionPolicyManager;
+
 
 namespace ems
 {
+	class audio;
+	class Render;
+	class InputManager;
+	class ActionBehavior;
+	class ActionPolicyManager;
+
 	class Engine
 	{
 	public:

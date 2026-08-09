@@ -4,24 +4,28 @@
 #include "src/Action/ActionBehavior.h"
 #include <vector>
 
-InputManager::InputManager(ActionBehavior* bh)
+namespace ems_engine
 {
-	b_bh = bh;
-	Kinput = std::make_unique<KeyboardInput>();
-	//Minput = std::make_unique<MouseInput>();
-	//Ginput = std::make_unique<GamepadInput>();
-	//Tinput = std::make_unique<TouchInput>();
-}
-InputManager::~InputManager() = default;
-void InputManager::InputRefresh()
-{
-	std::vector<std::pair<keyboard_code, key_state>> Klist;
-	std::vector<std::pair<mouse_code, key_state>> Mlist;
-	if (Kinput->UpdateState(Klist))
+
+	InputManager::InputManager(ActionBehavior* bh)
 	{
-		for (const auto Key : Klist)
+		b_bh = bh;
+		Kinput = std::make_unique<KeyboardInput>();
+		//Minput = std::make_unique<MouseInput>();
+		//Ginput = std::make_unique<GamepadInput>();
+		//Tinput = std::make_unique<TouchInput>();
+	}
+	InputManager::~InputManager() = default;
+	void InputManager::InputRefresh()
+	{
+		std::vector<std::pair<keyboard_code, key_state>> Klist;
+		std::vector<std::pair<mouse_code, key_state>> Mlist;
+		if (Kinput->UpdateState(Klist))
 		{
-			b_bh->ButtonExcute(Key);
+			for (const auto Key : Klist)
+			{
+				b_bh->ButtonExcute(Key);
+			}
 		}
 	}
 }

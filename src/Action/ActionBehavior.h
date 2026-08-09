@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "src/Common/enum.h"
-#include <map>
+#include "Common/enum.h"
+#include <unordered_map>
 #include <functional>
 #include <memory>
 
@@ -29,25 +29,12 @@ namespace ems_engine
 
 		
 
-		void addActionFlow(std::string code, std::string action_group_id, std::string condition);
-		void addActionFlow(keyboard_code code, std::string action_group_id, std::string condition);
-		void addActionFlow(mouse_code code, std::string action_group_id, std::string condition);
-		void addActionFlow(gamepad_code code, std::string action_group_id, std::string condition);
-
+		
 	private:
 		void ActionExcute(std::string action_groupID);
 
-		//std::map<keyboard_code, std::map<std::string, std::vector<std::string>>> Kaction_map;
-		/*std::map<keyboard_code, std::function<std::vector<std::string>(key_state KeyState)>> Kaction_map;
-		std::map<mouse_code, std::map<std::string, std::vector<std::string>>> Maction_map;
-		std::map<gamepad_code, std::map<std::string, std::vector<std::string>>> Gaction_map;
-
-		std::map<keyboard_code, std::function<std::string()>> Kcondition_map;
-		std::map<mouse_code, std::function<std::string()>> Mcondition_map;
-		std::map<gamepad_code, std::function<std::string()>> Gcondition_map;*/
-		ActionPolicyManager* action_policy_manager;
-		
-		std::map<std::string, std::function<void()>> action_group;
+		ActionPolicyManager* action_policy_manager;		
+		std::unordered_map<std::string, std::function<void()>> action_group;
 	};
 }
 

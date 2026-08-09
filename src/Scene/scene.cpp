@@ -1,130 +1,133 @@
 #include "scene.h"
 #include <iostream>
+namespace ems_engine
+{
 
-void Scene::addEntity(std::string type, std::string entityID,EntityConfig& configValue,Render& window)
-{
-	EntityMap[type].emplace
-	(
-		entityID, std::make_unique<Entity>(configValue, window)
-	);
-}
+	void Scene::addEntity(std::string type, std::string entityID, EntityConfig& configValue, Render& window)
+	{
+		EntityMap[type].emplace
+		(
+			entityID, std::make_unique<Entity>(configValue, window)
+		);
+	}
 
-void Scene::addText(text_type type, std::string textID, TextConfig& configValue)
-{
-	TextMap[type].emplace
-	(
-		textID, std::make_unique<ttf>(configValue)
-	);
-}
+	void Scene::addText(text_type type, std::string textID, TextConfig& configValue)
+	{
+		TextMap[type].emplace
+		(
+			textID, std::make_unique<ttf>(configValue)
+		);
+	}
 
-void Scene::eachEntity(std::function<void(Entity*)> action)
-{
-	for (auto& [type, map] : EntityMap)
+	void Scene::eachEntity(std::function<void(Entity*)> action)
 	{
-		for (auto& [ID, entity] : map)
+		for (auto& [type, map] : EntityMap)
 		{
-			action(entity.get());
+			for (auto& [ID, entity] : map)
+			{
+				action(entity.get());
+			}
 		}
 	}
-}
-void Scene::eachEntity(std::function<void(Entity*, std::string key)> action)
-{
-	for (auto& [type, map] : EntityMap)
+	void Scene::eachEntity(std::function<void(Entity*, std::string key)> action)
 	{
-		for (auto& [ID, entity] : map)
+		for (auto& [type, map] : EntityMap)
 		{
-			action(entity.get(), ID);
+			for (auto& [ID, entity] : map)
+			{
+				action(entity.get(), ID);
+			}
 		}
 	}
-}
-void Scene::OneEntityMap(std::string type, std::function<void(Entity*)> action)
-{
-	if (EntityMap.contains(type))
+	void Scene::OneEntityMap(std::string type, std::function<void(Entity*)> action)
 	{
-		for (auto& [ID, entity] : EntityMap[type])
+		if (EntityMap.contains(type))
 		{
-			action(entity.get());
+			for (auto& [ID, entity] : EntityMap[type])
+			{
+				action(entity.get());
+			}
 		}
 	}
-}
-void Scene::OneEntityMap(std::string type, std::function<void(Entity*, std::string key)> action)
-{
-	if (EntityMap.contains(type))
+	void Scene::OneEntityMap(std::string type, std::function<void(Entity*, std::string key)> action)
 	{
-		for (auto& [ID, entity] : EntityMap[type])
+		if (EntityMap.contains(type))
 		{
-			action(entity.get(), ID);
+			for (auto& [ID, entity] : EntityMap[type])
+			{
+				action(entity.get(), ID);
+			}
 		}
 	}
-}
 
-Entity* Scene::getEntity(std::string type, std::string ID)
-{
-	if (EntityMap.contains(type))
+	Entity* Scene::getEntity(std::string type, std::string ID)
 	{
-		if (EntityMap[type].contains(ID))
+		if (EntityMap.contains(type))
 		{
-			return EntityMap[type][ID].get();
+			if (EntityMap[type].contains(ID))
+			{
+				return EntityMap[type][ID].get();
+			}
+			std::cout << "[ERROR]:get Entity ID Not Found" << std::endl;
 		}
-		std::cout << "[ERROR]:get Entity ID Not Found" << std::endl;
+		std::cout << "[ERROR]:Can't get Entity" << std::endl;
+		return nullptr;
 	}
-	std::cout << "[ERROR]:Can't get Entity" << std::endl;
-	return nullptr;
-}
 
-void Scene::eachText(std::function<void(ttf*)> action)
-{
-	for (auto& [type, map] : TextMap)
+	void Scene::eachText(std::function<void(ttf*)> action)
 	{
-		for (auto& [ID, text] : map)
+		for (auto& [type, map] : TextMap)
 		{
-			action(text.get());
+			for (auto& [ID, text] : map)
+			{
+				action(text.get());
+			}
 		}
 	}
-}
-void Scene::eachText(std::function<void(ttf*, std::string key)> action)
-{
-	for (auto& [type, map] : TextMap)
+	void Scene::eachText(std::function<void(ttf*, std::string key)> action)
 	{
-		for (auto& [ID, text] : map)
+		for (auto& [type, map] : TextMap)
 		{
-			action(text.get(), ID);
+			for (auto& [ID, text] : map)
+			{
+				action(text.get(), ID);
+			}
 		}
 	}
-}
-void Scene::OneTextMap(text_type type, std::function<void(ttf*)> action)
-{
-	if (TextMap.contains(type))
+	void Scene::OneTextMap(text_type type, std::function<void(ttf*)> action)
 	{
-		for (auto& [ID, text] : TextMap[type])
+		if (TextMap.contains(type))
 		{
-			action(text.get());
+			for (auto& [ID, text] : TextMap[type])
+			{
+				action(text.get());
+			}
 		}
 	}
-}
-void Scene::OneTextMap(text_type type, std::function<void(ttf*, std::string key)> action)
-{
-	if (TextMap.contains(type))
+	void Scene::OneTextMap(text_type type, std::function<void(ttf*, std::string key)> action)
 	{
-		for (auto& [ID, text] : TextMap[type])
+		if (TextMap.contains(type))
 		{
-			action(text.get(), ID);
+			for (auto& [ID, text] : TextMap[type])
+			{
+				action(text.get(), ID);
+			}
 		}
 	}
-}
 
-ttf* Scene::getText(text_type type, std::string ID)
-{
-	if (TextMap.contains(type))
+	ttf* Scene::getText(text_type type, std::string ID)
 	{
-		if (TextMap[type].contains(ID))
+		if (TextMap.contains(type))
 		{
-			return TextMap[type][ID].get();
+			if (TextMap[type].contains(ID))
+			{
+				return TextMap[type][ID].get();
+			}
+			std::cout << "[ERROR]:get Text ID Not Found" << std::endl;
 		}
-		std::cout << "[ERROR]:get Text ID Not Found" << std::endl;
+		std::cout << "[ERROR]:Can't get Text" << std::endl;
+		return nullptr;
 	}
-	std::cout << "[ERROR]:Can't get Text" << std::endl;
-	return nullptr;
 }
 
 /*

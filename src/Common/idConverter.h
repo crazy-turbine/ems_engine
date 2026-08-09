@@ -4,17 +4,20 @@
 #include <string>
 #include "src/Common/struct.h"
 
-struct JsonTarget;
-
-class ID_Converter
+namespace ems_engine
 {
-public:
-	using Getter = std::function<std::string()>;
-	ID_Converter();
-	virtual ~ID_Converter() {};
-	virtual void CustomConverter() = 0;
-	void ConvertID(const std::string& str, std::string& returnVal);
-protected:
-	std::unordered_map<std::string, Getter> VaribleConvertMap;
-	std::unordered_map<std::string, JsonTarget> JsonConvertMap;
-};
+	struct JsonTarget;
+
+	class ID_Converter
+	{
+	public:
+		using Getter = std::function<std::string()>;
+		ID_Converter();
+		virtual ~ID_Converter() {};
+		virtual void CustomConverter() = 0;
+		void ConvertID(const std::string& str, std::string& returnVal);
+	protected:
+		std::unordered_map<std::string, Getter> VaribleConvertMap;
+		std::unordered_map<std::string, JsonTarget> JsonConvertMap;
+	};
+}

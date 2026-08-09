@@ -1,14 +1,15 @@
 #pragma once
-#include<unordered_map>
-#include<string>
+#include <unordered_map>
+#include <string>
+#include <functional>
 
 namespace ems_engine
 {
 	class ActionPolicy;
 	struct ActionPolicyConfig;
-	enum keyboard_code;
-	enum mouse_code;
-	enum gamepad_code;
+	enum class keyboard_code;
+	enum class mouse_code;
+	enum class gamepad_code;
 
 	class ActionPolicyManager
 	{
@@ -28,6 +29,15 @@ namespace ems_engine
 		void setConditionSelector(mouse_code code, std::function<std::string()> selector);
 		void setConditionSelector(gamepad_code code, std::function<std::string()> selector);
 
+		void addActionGroupID(std::string code, std::string action_group_id, std::string condition);
+		void addActionGroupID(keyboard_code code, std::string action_group_id, std::string condition);
+		void addActionGroupID(mouse_code code, std::string action_group_id, std::string condition);
+		void addActionGroupID(gamepad_code code, std::string action_group_id, std::string condition);
+		
+		void addActionGroupID(std::string code, std::string action_group_id);
+		void addActionGroupID(keyboard_code code, std::string action_group_id);
+		void addActionGroupID(mouse_code code, std::string action_group_id);
+		void addActionGroupID(gamepad_code code, std::string action_group_id);
 
 
 	private:
