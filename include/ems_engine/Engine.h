@@ -7,7 +7,8 @@
 class audio;
 class Render;
 class InputManager;
-class button_behavior;
+class ActionBehavior;
+class ActionPolicyManager;
 
 namespace ems
 {
@@ -28,8 +29,9 @@ namespace ems
 		const SDL_DisplayMode* displayMode;
 		std::unique_ptr<Render> render_sys;
 		std::unique_ptr<audio> sound_sys;
-		std::unique_ptr<InputManager> input_sys;
-		std::unique_ptr<button_behavior> button_def;
+		std::unique_ptr<InputManager> input_mgr;
+		std::unique_ptr<ActionBehavior> button_def;
+		std::unique_ptr<ActionPolicyManager> ap_mgr;
 		int windowWidth;
 		int windowHeight;
 	};

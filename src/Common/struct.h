@@ -67,6 +67,16 @@ struct TextConfig
 	std::vector<JsonTarget> default_text;
 	std::vector<JsonTarget> haveValue_text;
 };
+
+struct ActionPolicyConfig
+{
+
+	void clear()
+	{
+
+	}
+};
+
 struct EngineState
 {
 	float mouseX = 0;

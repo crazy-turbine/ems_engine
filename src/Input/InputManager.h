@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-class button_behavior;
+class ActionBehavior;
 class KeyboardInput;
 //class MouseInput;
 //class GamepadInput;
@@ -10,11 +10,11 @@ class KeyboardInput;
 class InputManager
 {
 public:
-	InputManager(button_behavior* bh);
+	InputManager(ActionBehavior* bh);
 	~InputManager();
 	void InputRefresh();
 private:
-	button_behavior* b_bh;
+	ActionBehavior* b_bh;
 	std::unique_ptr<KeyboardInput> Kinput;
 	//std::unique_ptr<MouseInput> Minput;
 	//std::unique_ptr<GamepadInput> Ginput;

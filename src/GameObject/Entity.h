@@ -2,7 +2,7 @@
 #include "src/Common/struct.h"
 #include <vector>
 #include <memory>
-//#include "src/Gameplay/button_behavior.h"
+//#include "src/Gameplay/ActionBehavior.h"
 //#include "src/Common/enum.h"
 #include <SDL_image.h>
 

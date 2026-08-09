@@ -1,10 +1,10 @@
 #include "InputManager.h"
 #include "KeyboardInput.h"
 #include "src/Common/enum.h"
-#include "src/Action/button_behavior.h"
+#include "src/Action/ActionBehavior.h"
 #include <vector>
 
-InputManager::InputManager(button_behavior* bh)
+InputManager::InputManager(ActionBehavior* bh)
 {
 	b_bh = bh;
 	Kinput = std::make_unique<KeyboardInput>();

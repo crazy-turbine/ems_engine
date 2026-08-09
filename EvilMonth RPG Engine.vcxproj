@@ -21,7 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\Action\Action.cpp" />
     <ClCompile Include="src\Action\ActionPolicy.cpp" />
-    <ClCompile Include="src\Action\button_behavior.cpp" />
+    <ClCompile Include="src\Action\ActionPolicyManager.cpp" />
+    <ClCompile Include="src\Action\ActionBehavior.cpp" />
     <ClCompile Include="src\Common\Event.cpp" />
     <ClCompile Include="src\Common\idConverter.cpp" />
     <ClCompile Include="src\Common\JsonValue.cpp" />
@@ -49,7 +50,7 @@
     <ClInclude Include="src\Action\Action.h" />
     <ClInclude Include="src\Action\ActionPolicy.h" />
     <ClInclude Include="src\Action\ActionPolicyManager.h" />
-    <ClInclude Include="src\Action\button_behavior.h" />
+    <ClInclude Include="src\Action\ActionBehavior.h" />
     <ClInclude Include="src\Common\enum.h" />
     <ClInclude Include="src\Common\Event.h" />
     <ClInclude Include="src\Common\idConverter.h" />
