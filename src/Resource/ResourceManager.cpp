@@ -1,7 +1,6 @@
 #include "ResourceManager.h"
-#include <memory>
-#include<string>
-#include <unordered_map>
+#include "Common/toHash.h"
+#include <iostream>
 
 /*
 struct TTF_Impl
@@ -12,20 +11,50 @@ struct TTF_Impl
 namespace ems_engine
 {
 
-	using texture_map = std::unordered_map < std::string, std::shared_ptr<SDL_Texture>>;
-	//sceneID,entityID,Texture
-	std::unordered_map < std::string/*scene_ID*/, texture_map> textureCache;
-	using font_map = std::unordered_map < float, std::shared_ptr<TTF_Font>>;
-	std::unordered_map < std::string, font_map> fontCache;
 
 
-	std::shared_ptr<SDL_Texture> readTexture(std::string file_path, std::string sceneID, Render& window)
+
+	uint64_t ResourceManager::loadTexture(std::string file_path, std::string sceneID, Render& window)
 	{
 		if (file_path.empty())
 		{
 			std::cout << "[ERROR]:file_path=" << file_path << "sceneID=" << sceneID << std::endl;
-			return nullptr;
+			return 0;
 		}
+		uint64_t path_hash = string_toHash(file_path);
+		auto scene_IDIt = textureCache.find(sceneID);
+		if (scene_IDIt != textureCache.end())
+		{
+			texture_map& map = scene_IDIt->second;
+			auto mapIt = map.find(path_hash);
+			if (mapIt != map.end())
+			{
+				return path_hash;
+			}
+		}
+		else
+		{
+			SDL_Texture* rawtex = window.loadTexture(file_path.c_str());
+			if (rawtex == nullptr)
+			{
+				std::cout << "[ERROR]:loadTexture Failed! file_path:" << file_path << std::endl;
+				return 0;
+			}
+			textureCache[sceneID][path_hash] = std::shared_ptr<SDL_Texture>
+				(
+					rawtex, [](SDL_Texture* t)
+					{
+						if (t)
+							SDL_DestroyTexture(t);
+					}
+				);
+			return path_hash;
+		}
+		
+	}
+	std::shared_ptr<SDL_Texture> ResourceManager::getTexture(uint64_t file_path, std::string sceneID, Render& window)
+	{
+	
 		auto scene_IDIt = textureCache.find(sceneID);
 		if (scene_IDIt != textureCache.end())
 		{
@@ -36,24 +65,11 @@ namespace ems_engine
 				return mapIt->second;
 			}
 		}
-		SDL_Texture* rawtex = window.loadTexture(file_path.c_str());
-		if (rawtex == nullptr)
-		{
-			std::cout << "[ERROR]:Texture not found! file_path:" << file_path << std::endl;
-			return nullptr;
-		}
-		textureCache[sceneID][file_path] = std::shared_ptr<SDL_Texture>
-			(
-				rawtex, [](SDL_Texture* t)
-				{
-					if (t)
-						SDL_DestroyTexture(t);
-				}
-			);
-		return textureCache[sceneID][file_path];
+		return nullptr;
+		
 	}
 
-	std::shared_ptr<TTF_Font> readFont(std::string path, float size)
+	std::shared_ptr<TTF_Font> ResourceManager::readFont(std::string path, float size)
 	{
 		if (size == NULL)
 		{
@@ -93,11 +109,11 @@ namespace ems_engine
 			);
 		return fontCache[path][size];
 	}
-	void clearTextureCache(std::string sceneID)
+	void ResourceManager::clearTextureCache(std::string sceneID)
 	{
 		textureCache[sceneID].clear();
 	}
-	void clearFontCache()
+	void ResourceManager::clearFontCache()
 	{
 		fontCache.clear();
 	}

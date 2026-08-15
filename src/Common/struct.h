@@ -13,35 +13,37 @@ namespace ems_engine
 	{
 		SDL_Texture* Texture;
 
-		float x = 0;
-		float y = 0;
-		float w = 0;
-		float h = 0;
+		float x = 0.0f;
+		float y = 0.0f;
+		float w = 0.0f;
+		float h = 0.0f;
 
-		double angle = 0;
+		double angle = 0.0f;
 		bool useDefaultCenter = true;
-		float PointX = 0;
-		float PointY = 0;
+		float PointX = 0.0f;
+		float PointY = 0.0f;
 
 		FlipType flip = FlipType::None;
 	};
 
-	struct Vector2f
+	struct Position
 	{
-		Vector2f()
-			:x(0.0f), y(0.0f)
-		{
-		}
-		Vector2f(float p_x, float p_y)
-			:x(p_x), y(p_y)
-		{
-		}
-		void print()
-		{
-			//std::cout << x << "," << y << std::endl;
-		}
-		float x, y;
+		float x = 0.0f, y = 0.0f;
 	};
+	struct Size
+	{
+		float w = 0.0f, h = 0.0f;
+	};
+	struct Rect
+	{
+		float x = 0.0f, y = 0.0f, w = 0.0f, h = 0.0f;
+	};
+	struct Color
+	{
+		uint8_t r = 255, g = 255, b = 255, a = 255;
+	};
+
+
 	struct EntityConfig
 	{
 		std::string sceneID;
@@ -71,14 +73,6 @@ namespace ems_engine
 		std::vector<JsonTarget> haveValue_text;
 	};
 
-	struct ActionPolicyConfig
-	{
-
-		void clear()
-		{
-
-		}
-	};
 
 	struct EngineState
 	{

@@ -19,7 +19,7 @@ namespace ems_engine
 
 		for (const auto& path : config.TexturePath)
 		{
-			Texture.push_back(readTexture(path, config.sceneID, window_0));
+			//Texture.push_back(readTexture(path, config.sceneID, window_0));
 		}
 		/*
 		if (!config.path1.empty())
@@ -71,11 +71,11 @@ namespace ems_engine
 		pos.y = y;
 	}
 
-	Vector2f Entity::getPos()
+	Position Entity::getPos()
 	{
 		return pos;
 	}
-	Vector2f Entity::getOriginalPos()
+	Position Entity::getOriginalPos()
 	{
 		return O_pos;
 	}

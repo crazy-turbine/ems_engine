@@ -1,4 +1,4 @@
-#include "include/ems_engine/Engine.h"
+#include "include/ems_engine/Core.h"
 #include "src/Output/Audio.h"
 #include "src/Output/Render.h"
 #include "src/Resource/jsonManager.h"
@@ -11,7 +11,7 @@
 namespace ems_engine
 {
 
-	Engine::Engine()
+	Core::Core()
 	{
 		windowWidth = 0;
 		windowHeight = 0;
@@ -23,8 +23,8 @@ namespace ems_engine
 		Display = NULL;
 		displayMode = nullptr;
 	}
-	Engine::~Engine() = default;
-	bool Engine::init()
+	Core::~Core() = default;
+	bool Core::init()
 	{
 		if (!initSDL())
 			return false;
@@ -40,7 +40,7 @@ namespace ems_engine
 
 		return true;
 	}
-	void Engine::run()
+	void Core::run()
 	{
 		bool app = true;
 		while (app)
@@ -48,7 +48,7 @@ namespace ems_engine
 			input_mgr->InputRefresh();
 		}
 	}
-	bool Engine::initSDL()
+	bool Core::initSDL()
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
@@ -73,13 +73,13 @@ namespace ems_engine
 		}
 		return true;
 	}
-	void Engine::showError(std::string msg, std::string err)
+	void Core::showError(std::string msg, std::string err)
 	{
 		std::cout << "[ERROR]:" << msg << err << std::endl;
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "A Day of Feb", err.c_str(), NULL);
 		//MessageBoxW(nullptr, to_utf16(err).c_str(), L"A Day of Feb", MB_OK | MB_ICONERROR);
 	}
-	bool Engine::checkResolution()
+	bool Core::checkResolution()
 	{
 		if (displayMode->w < 1024 || displayMode->h < 768)
 		{
@@ -97,7 +97,7 @@ namespace ems_engine
 		std::cout << "[DEBUG]:Window Resolution:" << windowWidth << "x" << windowHeight << std::endl;
 		return true;
 	}
-	bool Engine::set_cursor()
+	bool Core::set_cursor()
 	{
 		SDL_Surface* surf = IMG_Load("res/gfx/cursor.png");
 		if (!surf)

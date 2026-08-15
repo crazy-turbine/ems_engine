@@ -14,11 +14,11 @@ namespace ems_engine
 	class ActionBehavior;
 	class ActionPolicyManager;
 
-	class Engine
+	class Core
 	{
 	public:
-		Engine();
-		~Engine();
+		Core();
+		~Core();
 		bool init();
 		void run();
 	private:

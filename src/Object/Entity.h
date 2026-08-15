@@ -22,8 +22,8 @@ namespace ems_engine
 		}
 		void CurrentFrame(float w, float h);
 		void setPos(float x, float y);
-		Vector2f getPos();
-		Vector2f getOriginalPos();
+		Position getPos();
+		Position getOriginalPos();
 		void setTex_num(int tex_num);
 		int getTex_num();
 		SDL_Texture* getTex();
@@ -44,8 +44,8 @@ namespace ems_engine
 		std::string action = "";
 		RenderConfig RenderData;
 		int layer;
-		Vector2f pos;
-		Vector2f O_pos;
+		Position pos;
+		Position O_pos;
 		std::string slide_buttonID;
 		std::vector<std::shared_ptr<SDL_Texture>> Texture;
 		int TextureIndex = 0;

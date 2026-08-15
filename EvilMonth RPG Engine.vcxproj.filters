@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine.cpp">
+    <ClCompile Include="src\Core.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Output\Audio.cpp">
@@ -93,9 +93,18 @@
     <ClCompile Include="src\Object\Object.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\Object\UIEelement\UIElement.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\ObjectFactory.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\UIEelement\UIButton.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\ems_engine\Engine.h">
+    <ClInclude Include="include\ems_engine\Core.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Output\Audio.h">
@@ -183,6 +192,15 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\Object.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\UIEelement\UIElement.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\ObjectFactory.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\UIEelement\UIButton.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
