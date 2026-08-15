@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <string>
 #include <functional>
+#include <memory>
 
 namespace ems_engine
 {
@@ -14,7 +15,8 @@ namespace ems_engine
 	class ActionPolicyManager
 	{
 	public:
-
+		ActionPolicyManager();
+		~ActionPolicyManager();
 		bool createActionPolicy(const std::string& key);
 		bool createActionPolicy(const keyboard_code& key);
 		bool createActionPolicy(const mouse_code& key);
@@ -43,6 +45,6 @@ namespace ems_engine
 	private:
 		bool ActionPolicyCreater(const uint64_t& hash);
 		ActionPolicy* ActionPolicyGetter(const uint64_t& hash);
-		std::unordered_map<uint64_t, ActionPolicy> ActionPolicyList;
+		std::unordered_map<uint64_t, std::unique_ptr<ActionPolicy>> ActionPolicyList;
 	};
 };

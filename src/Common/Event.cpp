@@ -1,7 +1,7 @@
 #include "src/Resource/jsonManager.h"
 #include "Event.h"
-#include "src/GameObject/entity.h"
-#include "src/GameObject/Create.h"
+#include "src/Object/entity.h"
+#include "src/Object/Create.h"
 #include "src/Output/RenderManager.h"
 #include "src/Output/Audio.h"
 #include <iostream>
@@ -16,6 +16,9 @@ namespace ems_engine
         {
             uiManager.setTargetSceneID("game_exit");
         }
+
+        
+
 
         if (event.type == SDL_EVENT_MOUSE_MOTION)
         {

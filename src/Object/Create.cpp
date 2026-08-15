@@ -1,5 +1,5 @@
-#include "src/GameObject/Create.h"
-#include "src/GameObject/Entity.h"
+#include "src/Object/Create.h"
+#include "src/Object/Entity.h"
 #include "src/Resource/json.h"
 #include "third_party/magic_enum/magic_enum.hpp"
 

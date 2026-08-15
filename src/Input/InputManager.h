@@ -3,10 +3,10 @@
 
 namespace ems_engine
 {
-
+	enum class mouse_code;
 	class ActionBehavior;
 	class KeyboardInput;
-	//class MouseInput;
+	class MouseInput;
 	//class GamepadInput;
 	//class TouchInput;
 
@@ -17,9 +17,9 @@ namespace ems_engine
 		~InputManager();
 		void InputRefresh();
 	private:
-		ActionBehavior* b_bh;
+		ActionBehavior* a_bh;
 		std::unique_ptr<KeyboardInput> Kinput;
-		//std::unique_ptr<MouseInput> Minput;
+		std::unique_ptr<MouseInput> Minput;
 		//std::unique_ptr<GamepadInput> Ginput;
 		//std::unique_ptr<TouchInput> Tinput;
 	};

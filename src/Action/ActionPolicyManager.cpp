@@ -6,6 +6,9 @@
 #include <iostream>
 namespace ems_engine
 {
+	ActionPolicyManager::ActionPolicyManager() = default;
+	ActionPolicyManager::~ActionPolicyManager() = default;
+
 	bool ActionPolicyManager::createActionPolicy(const std::string& key)
 	{
 		uint64_t hash_key = string_toHash(key);
@@ -29,7 +32,7 @@ namespace ems_engine
 	}
 	bool ActionPolicyManager::ActionPolicyCreater(const uint64_t& hash)
 	{
-		if (!ActionPolicyList.try_emplace(hash).second)
+		if (!ActionPolicyList.try_emplace(hash,std::make_unique<ActionPolicy>()).second)
 		{
 			std::cout << "[Debug]:ActionPolicy already exists!" << std::endl;
 			return false;
@@ -144,6 +147,6 @@ namespace ems_engine
 			return nullptr;
 		}
 		else
-			return &it->second;
+			return it->second.get();
 	}
 };

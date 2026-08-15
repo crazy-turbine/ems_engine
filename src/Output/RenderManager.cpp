@@ -1,9 +1,9 @@
 #include "RenderManager.h"
-#include "src/GameObject/ttf.h"
+#include "src/Object/ttf.h"
 //#include "third_party/magic_enum/magic_enum.hpp"
 #include "src/Common/idConverter.h"
 #include "src/Resource/jsonManager.h"
-#include "src/GameObject/Entity.h"
+#include "src/Object/Entity.h"
 #include "src/Output/Render.h"
 #include "src/Scene/SceneManager.h"
 

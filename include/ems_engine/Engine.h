@@ -6,7 +6,7 @@
 
 
 
-namespace ems
+namespace ems_engine
 {
 	class audio;
 	class Render;

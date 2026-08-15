@@ -1,4 +1,4 @@
-#include "src/GameObject/ttf.h"
+#include "src/Object/ttf.h"
 #include "src/Output/Render.h"
 #include "src/Resource/ResourceManager.h"
 //#include "third_party/magic_enum/magic_enum.hpp"

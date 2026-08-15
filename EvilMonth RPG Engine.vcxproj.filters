@@ -30,16 +30,16 @@
     <ClCompile Include="src\Output\RenderManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Entity.cpp">
+    <ClCompile Include="src\Object\Entity.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Resource\ResourceManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Sprite.cpp">
+    <ClCompile Include="src\Object\Sprite.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\ttf.cpp">
+    <ClCompile Include="src\Object\ttf.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Common\idConverter.cpp">
@@ -51,10 +51,10 @@
     <ClCompile Include="src\Scene\sceneManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\Create.cpp">
+    <ClCompile Include="src\Object\Create.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\animationManager.cpp">
+    <ClCompile Include="src\Object\animationManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Common\Event.cpp">
@@ -90,6 +90,9 @@
     <ClCompile Include="src\Action\ActionPolicyManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\Object\Object.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Engine.h">
@@ -110,7 +113,7 @@
     <ClInclude Include="src\Output\RenderManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Entity.h">
+    <ClInclude Include="src\Object\Entity.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Common\struct.h">
@@ -122,10 +125,10 @@
     <ClInclude Include="src\Common\enum.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\ttf.h">
+    <ClInclude Include="src\Object\ttf.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Sprite.h">
+    <ClInclude Include="src\Object\Sprite.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Common\idConverter.h">
@@ -137,10 +140,10 @@
     <ClInclude Include="src\Scene\sceneManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Create.h">
+    <ClInclude Include="src\Object\Create.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\animationManager.h">
+    <ClInclude Include="src\Object\animationManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Common\Event.h">
@@ -177,6 +180,9 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Common\toHash.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\Object.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

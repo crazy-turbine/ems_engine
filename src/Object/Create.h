@@ -1,7 +1,7 @@
 #pragma once
-#include "src/GameObject/Entity.h"
-#include "src/GameObject/ttf.h"
-#include "src/GameObject/Sprite.h"
+#include "src/Object/Entity.h"
+#include "src/Object/ttf.h"
+#include "src/Object/Sprite.h"
 //#include "src/Common/function.h"
 #include <vector>
 #include <map>

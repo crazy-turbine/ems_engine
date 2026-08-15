@@ -2,8 +2,8 @@
 #include<unordered_map>
 #include"src/Common/enum.h"
 #include <memory>
-#include "src/GameObject/Entity.h"
-#include "src/GameObject/ttf.h"
+#include "src/Object/Entity.h"
+#include "src/Object/ttf.h"
 #include <functional>
 namespace ems_engine
 {
