@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cstdint>
 #define XXH_INLINE_ALL
 #include <third_party/xxhash.h>
 #include <third_party/magic_enum/magic_enum.hpp>
@@ -22,5 +23,9 @@ namespace ems_engine
 		Data.append(EnumType).append(EnumValue);
 		
 		return string_toHash(Data);
+	}
+	inline uint64_t operator""_xxHash(const char* str, size_t size)
+	{
+		return XXH3_64bits(str, size);
 	}
 }

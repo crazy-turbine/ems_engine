@@ -25,6 +25,8 @@ namespace ems_engine
 
 		Object(const Object&) = delete;
 		Object& operator = (const Object&) = delete;
+		Object(Object&&) = delete;
+		Object& operator=(Object&&) = delete;
 	protected:
 		Object() = default;
 		Object(float x, float y, float w, float h);

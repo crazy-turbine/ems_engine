@@ -38,6 +38,7 @@
     <ClCompile Include="src\Input\MouseInput.cpp" />
     <ClCompile Include="src\Object\UIEelement\UIButton.cpp" />
     <ClCompile Include="src\Object\UIEelement\UIElement.cpp" />
+    <ClCompile Include="src\Object\UIEelement\UIStateElement.cpp" />
     <ClCompile Include="src\Output\Render.cpp" />
     <ClCompile Include="src\Output\RenderManager.cpp" />
     <ClCompile Include="src\Resource\jsonManager.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="src\Input\MouseInput.h" />
     <ClInclude Include="src\Object\UIEelement\UIButton.h" />
     <ClInclude Include="src\Object\UIEelement\UIElement.h" />
+    <ClInclude Include="src\Object\UIEelement\UIStateElement.h" />
     <ClInclude Include="src\Output\Render.h" />
     <ClInclude Include="src\Output\RenderManager.h" />
     <ClInclude Include="src\Resource\json.h" />
