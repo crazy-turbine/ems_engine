@@ -45,7 +45,7 @@ namespace ems_engine
                 "button",
                 [&](Entity* button)
                 {
-                    if (button->getVisible() &&
+                    if (button->isVisible() &&
                         state.mouseX >= button->getPos().x &&
                         state.mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                         state.mouseY >= button->getPos().y &&
@@ -64,7 +64,7 @@ namespace ems_engine
                 "select_button",
                 [&](Entity* button)
                 {
-                    if (button->getVisible() &&
+                    if (button->isVisible() &&
                         state.mouseX >= button->getPos().x &&
                         state.mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                         state.mouseY >= button->getPos().y &&
@@ -90,7 +90,7 @@ namespace ems_engine
                 "slide_button",
                 [&](Entity* button, std::string key)
                 {
-                    if (button->getVisible() &&
+                    if (button->isVisible() &&
                         state.mouseX >= button->getPos().x &&
                         state.mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                         state.mouseY >= button->getPos().y &&
@@ -120,7 +120,7 @@ namespace ems_engine
                     "button",
                     [&](Entity* button, std::string key)
                     {
-                        if (button->getVisible() &&
+                        if (button->isVisible() &&
                             mouseX >= button->getPos().x &&
                             mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                             mouseY >= button->getPos().y &&
@@ -136,7 +136,7 @@ namespace ems_engine
                     "select_button",
                     [&](Entity* button)
                     {
-                        if (button->getVisible() &&
+                        if (button->isVisible() &&
                             mouseX >= button->getPos().x &&
                             mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                             mouseY >= button->getPos().y &&
@@ -152,7 +152,7 @@ namespace ems_engine
                     "slide_bar",
                     [&](Entity* button)
                     {
-                        if (button->getVisible() &&
+                        if (button->isVisible() &&
                             mouseX >= button->getPos().x &&
                             mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                             mouseY >= button->getPos().y &&
@@ -170,7 +170,7 @@ namespace ems_engine
                     "slide_button",
                     [&](Entity* button)
                     {
-                        if (button->getVisible() &&
+                        if (button->isVisible() &&
                             mouseX >= button->getPos().x &&
                             mouseX <= button->getPos().x + button->getCurrentFrame().w &&
                             mouseY >= button->getPos().y &&

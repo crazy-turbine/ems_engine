@@ -4,6 +4,23 @@
 
 namespace ems_engine
 {
+    UIButton::UIButton()
+    {
+        setDefaultState("Default");
+        setHoverState("Hover");
+    }
+    UIButton::UIButton(float x, float y, float w, float h, const std::vector<std::string>& visual_group, std::string_view state, float fps, uint64_t df_state, uint64_t hov_state)
+        :UIStateElement(x,y,w,h,visual_group,state,fps)
+    {
+        setDefaultState(df_state);
+        setHoverState(hov_state);
+    }
+    UIButton::UIButton(float x, float y, float w, float h, const std::vector<std::string>& visual_group, std::string_view state, float fps, std::string df_state, std::string hov_state)
+        :UIStateElement(x,y,w,h,visual_group,state,fps)
+    {
+        setDefaultState(df_state);
+        setHoverState(hov_state);
+    }
 	bool UIButton::contains(float mouseX, float mouseY)
 	{
         if (isVisible() &&

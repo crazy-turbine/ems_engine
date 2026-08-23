@@ -105,7 +105,7 @@ namespace ems_engine
 		visible = visibility;
 	}
 
-	bool Entity::getVisible()
+	bool Entity::isVisible()
 	{
 		return visible;
 	}

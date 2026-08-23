@@ -18,7 +18,7 @@ namespace ems_engine
 
 	void RenderManager::EntityRender(Entity& entity, Render& window)
 	{
-		if (entity.getVisible())
+		if (entity.isVisible())
 		{
 			window.RenderEntity(entity.getRenderConfig());
 		}

@@ -105,6 +105,12 @@
     <ClCompile Include="src\Object\UIEelement\UIStateElement.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\Object\UIEelement\UICheckBox.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\UIEelement\UISlider.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Core.h">
@@ -207,6 +213,12 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\UIEelement\UIStateElement.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\UIEelement\UICheckBox.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\UIEelement\UISlider.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

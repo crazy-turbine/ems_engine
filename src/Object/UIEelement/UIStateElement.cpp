@@ -37,16 +37,18 @@ namespace ems_engine
 	void UIStateElement::setCurrentVisualState(uint64_t state)
 	{
 		auto it = texture_state.find(state);
-		if(it!=texture_state.end())
+		if(it==texture_state.end())
 		{
-			current_visual_group = &it->second;
-			current_state = state;
-			current_frame = 0;
-			update_timer = 0.0f;
-			update();
-		}
-		else
 			std::cout << "[Error]:Visual State Not Found!" << std::endl;
+			std::vector<uint64_t> tmp_visual_group;
+			tmp_visual_group.push_back(0);
+			setVisualGroup(tmp_visual_group, state);
+		}
+		current_visual_group = &it->second;
+		current_state = state;
+		current_frame = 0;
+		update_timer = 0.0f;
+		update();
 	}
 	void UIStateElement::setCurrentVisualState(std::string_view state)
 	{

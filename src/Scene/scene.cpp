@@ -1,15 +1,9 @@
 #include "scene.h"
+#include "src/Object/Object.h"
 #include <iostream>
 namespace ems_engine
 {
 
-	void Scene::addEntity(std::string type, std::string entityID, EntityConfig& configValue, Render& window)
-	{
-		EntityMap[type].emplace
-		(
-			entityID, std::make_unique<Entity>(configValue, window)
-		);
-	}
 
 	void Scene::addText(text_type type, std::string textID, TextConfig& configValue)
 	{
@@ -19,24 +13,18 @@ namespace ems_engine
 		);
 	}
 
-	void Scene::eachEntity(std::function<void(Entity*)> action)
+	void Scene::eachObject(std::function<void(Object*)> action)
 	{
-		for (auto& [type, map] : EntityMap)
+		for (auto& [ID, entity] : EntityMap)
 		{
-			for (auto& [ID, entity] : map)
-			{
-				action(entity.get());
-			}
+			action(entity.get());
 		}
 	}
-	void Scene::eachEntity(std::function<void(Entity*, std::string key)> action)
+	void Scene::eachObject(std::function<void(Object*, std::string key)> action)
 	{
-		for (auto& [type, map] : EntityMap)
+		for (auto& [ID, entity] : EntityMap)
 		{
-			for (auto& [ID, entity] : map)
-			{
-				action(entity.get(), ID);
-			}
+			action(entity.get(), ID);
 		}
 	}
 	void Scene::OneEntityMap(std::string type, std::function<void(Entity*)> action)

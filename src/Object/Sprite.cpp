@@ -61,7 +61,7 @@ namespace ems_engine
 		visible = visibility;
 	}
 
-	bool Sprite::getVisible()
+	bool Sprite::isVisible()
 	{
 		return visible;
 	}

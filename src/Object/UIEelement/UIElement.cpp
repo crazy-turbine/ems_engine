@@ -6,11 +6,11 @@ namespace ems_engine
 		:Object(x,y,w,h), current_textureID_(textureID)
 	{
 	}
-	void UIElement::setCurrentTextureID(uint64_t textureID)
+	void UIElement::setCurrentTextureID(uint64_t textureID, size_t index = 0)
 	{
 		current_textureID_ = textureID;
 	}
-	uint64_t UIElement::getCurrentTextureID() const
+	uint64_t UIElement::getCurrentTextureID(size_t index = 0) const
 	{
 		return current_textureID_;
 	}

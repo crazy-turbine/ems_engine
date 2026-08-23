@@ -16,10 +16,10 @@ namespace ems_engine
 		Sprite(std::string sceneID, float x, float y, float w, float h, const char* file_path, Render& window_0, int frames, Uint32 speed);
 		void update(bool stop);
 		void setflip(bool flip);
-		bool getflip();
+		bool isflip();
 		void setsize(int display_w, int display_h);
 		void setVisible(bool visibility);
-		bool getVisible();
+		bool isVisible();
 	private:
 		std::shared_ptr<SDL_Texture> texture; // 角色的精靈圖
 		SDL_FRect srcRect, destRect; // 源區域 & 目標區域

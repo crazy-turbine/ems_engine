@@ -29,7 +29,7 @@ namespace ems_engine
 		SDL_Texture* getTex();
 		SDL_Rect getCurrentFrame();
 		void setVisible(bool visibility);
-		bool getVisible();
+		bool isVisible();
 		void setLayer(int layerID);
 		int getLayer();
 		void setAlpha(Uint8 alpha_v);
