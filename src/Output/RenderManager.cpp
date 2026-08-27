@@ -3,7 +3,8 @@
 //#include "third_party/magic_enum/magic_enum.hpp"
 #include "src/Common/idConverter.h"
 #include "src/Resource/jsonManager.h"
-#include "src/Object/Entity.h"
+#include "src/Object/Object.h"
+#include "src/Object/TextureObject.h"
 #include "src/Output/Render.h"
 #include "src/Scene/SceneManager.h"
 
@@ -14,22 +15,23 @@ namespace ems_engine
 {
 
 
-	std::vector<Entity*> RenderManager::renderQueue;
+	std::vector<TextureObject*> RenderManager::renderQueue;
 
-	void RenderManager::EntityRender(Entity& entity, Render& window)
+	void RenderManager::EntityRender(TextureObject& obj, Render& window)
 	{
-		if (entity.isVisible())
+		if (obj.isVisible())
 		{
-			window.RenderEntity(entity.getRenderConfig());
+			window.RenderEntity(obj.getRenderConfig());
 		}
 
 	}
 
-	bool RenderManager::runRender(Render& window, SceneManager& uiManager)
+	bool RenderManager::runRender(Render& window,SceneManager& uiManager)
 	{
 		window.beforeRender();
-		renderQueue.clear();
-
+		
+		
+		/*
 		uiManager.getGlobalScene()->OneEntityMap
 		(
 			"back",
@@ -38,24 +40,45 @@ namespace ems_engine
 				if (entity)
 					EntityRender(*entity, window);
 			}
-		);
-		uiManager.getCurrentScene()->eachEntity
-		(
-			[&](Entity* entity)
-			{
-				renderQueue.push_back(entity);
-			}
-		);
-
-		std::sort(renderQueue.begin(), renderQueue.end(), [](Entity* a, Entity* b)
-			{
-				if (a->getLayer() != b->getLayer())
-					return a->getLayer() < b->getLayer();
-				else
+		);*/
+		if (uiManager.getCurrentScene()->getObjectMapDirtyFlag())
+		{
+			renderQueue.clear();
+			uiManager.getCurrentScene()->ExecuteOneTypeObject<TextureObject>
+			(
+				[&](TextureObject* entity)
 				{
-					return a->getPos().y + a->getCurrentFrame().h < b->getPos().y + b->getCurrentFrame().h;
+					renderQueue.push_back(entity);
 				}
-			});
+			);
+			std::sort(renderQueue.begin(), renderQueue.end(), [](TextureObject* a, TextureObject* b)
+				{
+					if (a->getLayer() != b->getLayer())
+						return a->getLayer() < b->getLayer();
+					else
+					{
+						return a->getPos().y + a->getSize().h < b->getPos().y + b->getSize().h;
+					}
+				});
+			
+
+		}
+		else if(uiManager.getCurrentScene()->getObjectSortDirtyFlag())
+		{
+			std::stable_sort(renderQueue.begin(), renderQueue.end(), [](TextureObject* a, TextureObject* b)
+				{
+					if (a->getLayer() != b->getLayer())
+						return a->getLayer() < b->getLayer();
+					else
+					{
+						return a->getPos().y + a->getSize().h < b->getPos().y + b->getSize().h;
+					}
+				});
+		}
+
+		uiManager.getCurrentScene()->resetObjectMapDirtyFlag();
+		uiManager.getCurrentScene()->resetObjectSortDirtyFlag();
+
 
 		for (auto* e : renderQueue)
 		{

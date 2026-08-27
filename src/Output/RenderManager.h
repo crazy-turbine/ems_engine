@@ -13,7 +13,7 @@ namespace ems_engine
 
 	class ID_Converter;
 	class SceneManager;
-	class Entity;
+	class TextureObject;
 	class Render;
 
 	class RenderManager
@@ -21,9 +21,9 @@ namespace ems_engine
 	public:
 
 		static bool runRender(Render& window, SceneManager& uiManager);
-		static void EntityRender(Entity& entity, Render& window);
+		static void EntityRender(TextureObject& obj, Render& window);
 		static void refreshUIText(std::string language, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter);
 	private:
-		static std::vector<Entity*> renderQueue;
+		static std::vector<TextureObject*> renderQueue;
 	};
 }

@@ -93,22 +93,25 @@
     <ClCompile Include="src\Object\Object.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\UIEelement\UIElement.cpp">
+    <ClCompile Include="src\Object\UIElement\UIElement.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Object\ObjectFactory.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\UIEelement\UIButton.cpp">
+    <ClCompile Include="src\Object\UIElement\UIButton.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\UIEelement\UIStateElement.cpp">
+    <ClCompile Include="src\Object\UIElement\UIStateElement.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\UIEelement\UICheckBox.cpp">
+    <ClCompile Include="src\Object\UIElement\UICheckBox.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\UIEelement\UISlider.cpp">
+    <ClCompile Include="src\Object\UIElement\UISlider.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\TextureObject.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,22 +206,25 @@
     <ClInclude Include="src\Object\Object.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIEelement\UIElement.h">
+    <ClInclude Include="src\Object\UIElement\UIElement.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\ObjectFactory.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIEelement\UIButton.h">
+    <ClInclude Include="src\Object\UIElement\UIButton.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIEelement\UIStateElement.h">
+    <ClInclude Include="src\Object\UIElement\UIStateElement.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIEelement\UICheckBox.h">
+    <ClInclude Include="src\Object\UIElement\UICheckBox.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIEelement\UISlider.h">
+    <ClInclude Include="src\Object\UIElement\UISlider.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\TextureObject.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

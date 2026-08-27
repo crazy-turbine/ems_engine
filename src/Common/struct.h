@@ -11,7 +11,7 @@ namespace ems_engine
 
 	struct RenderConfig
 	{
-		SDL_Texture* Texture;
+		uint64_t textureID = 0;
 
 		float x = 0.0f;
 		float y = 0.0f;

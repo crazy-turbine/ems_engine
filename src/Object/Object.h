@@ -30,6 +30,7 @@ namespace ems_engine
 	protected:
 		Object() = default;
 		Object(float x, float y, float w, float h);
+		virtual void onPosChanged() {};
 	private:
 		Rect rect{};
 		bool debug_mode = false;

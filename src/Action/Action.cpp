@@ -49,13 +49,13 @@ namespace ems_engine
 		state->isDragging = true;
 		state->TargetButton = button;
 	}
-	void EngineAction::clickBar(Entity* button)
+	/*void EngineAction::clickBar(Entity* button)
 	{
 		state->isDragging = true;
 		state->TargetButton = uiMgr->getCurrentScene()->getEntity
 		("slide_button", button->getSlideButton());
-	}
-	void EngineAction::RefreshDrag(Entity* button)
+	}*/
+	/*void EngineAction::RefreshDrag(Entity* button)
 	{
 		bool toggle = false;
 		float value = 0.0f;
@@ -75,7 +75,7 @@ namespace ems_engine
 			button->getOriginalPos().x - (1000.0f - value),
 			button->getPos().y
 		);
-	}
+	}*/
 	void EngineAction::setVsync(bool toggle)
 	{
 		state->Vsync = toggle;

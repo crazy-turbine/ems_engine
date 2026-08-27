@@ -54,7 +54,7 @@ namespace ems_engine
 		return horizon_;
 	}
 
-	void UISlider::setCurrentTextureID(uint64_t textureID, size_t index = 0)
+	void UISlider::setCurrentTextureID(uint64_t textureID, size_t index)
 	{
 		if (index == 0)
 			current_textureID_ = textureID;

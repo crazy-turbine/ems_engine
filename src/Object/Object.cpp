@@ -13,6 +13,7 @@ namespace ems_engine
 	{
 		rect.x = x;
 		rect.y = y;
+		onPosChanged();
 	}
 	void Object::setSize(float w, float h)
 	{

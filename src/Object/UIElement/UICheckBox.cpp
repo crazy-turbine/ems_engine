@@ -23,7 +23,7 @@ namespace ems_engine
         setCheckedState(chk_state);
         setCheckedHoverState(chk_hov_state);
     }
-    UICheckBox::UICheckBox(float x, float y, float w, float h, const std::vector<std::string>& visual_group, std::string_view state, float fps, std::string df_state, std::string hov_state, std::string chk_state, std::string chk_hov_state = "")
+    UICheckBox::UICheckBox(float x, float y, float w, float h, const std::vector<std::string>& visual_group, std::string_view state, float fps, std::string df_state, std::string hov_state, std::string chk_state, std::string chk_hov_state)
         :UIButton(x, y, w, h, visual_group, state, fps, df_state, hov_state)
     {
         if (chk_hov_state.empty())

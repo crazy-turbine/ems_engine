@@ -13,20 +13,21 @@ namespace ems_engine
 		);
 	}
 
-	void Scene::eachObject(std::function<void(Object*)> action)
+	void Scene::ExecuteAllObject(std::function<void(Object*)> action)
 	{
-		for (auto& [ID, entity] : EntityMap)
+		for (auto& [ID, entity] : ObjectMap)
 		{
 			action(entity.get());
 		}
 	}
-	void Scene::eachObject(std::function<void(Object*, std::string key)> action)
+	void Scene::ExecuteAllObject(std::function<void(Object*, std::string key)> action)
 	{
-		for (auto& [ID, entity] : EntityMap)
+		for (auto& [ID, entity] : ObjectMap)
 		{
 			action(entity.get(), ID);
 		}
 	}
+	/*
 	void Scene::OneEntityMap(std::string type, std::function<void(Entity*)> action)
 	{
 		if (EntityMap.contains(type))
@@ -47,7 +48,7 @@ namespace ems_engine
 			}
 		}
 	}
-
+	
 	Entity* Scene::getEntity(std::string type, std::string ID)
 	{
 		if (EntityMap.contains(type))
@@ -60,7 +61,7 @@ namespace ems_engine
 		}
 		std::cout << "[ERROR]:Can't get Entity" << std::endl;
 		return nullptr;
-	}
+	}*/
 
 	void Scene::eachText(std::function<void(ttf*)> action)
 	{
@@ -116,6 +117,27 @@ namespace ems_engine
 		std::cout << "[ERROR]:Can't get Text" << std::endl;
 		return nullptr;
 	}
+
+	bool Scene::getObjectMapDirtyFlag()
+	{
+		return obj_map_dirty_flag;
+	}
+	void Scene::resetObjectMapDirtyFlag()
+	{
+		obj_map_dirty_flag = false;
+	}
+	void Scene::onObjectTransformChanged()
+	{
+		obj_sort_dirty_flag = true;
+	}
+	bool Scene::getObjectSortDirtyFlag()
+	{
+		return obj_sort_dirty_flag;
+	}
+	void Scene::resetObjectSortDirtyFlag()
+	{
+		obj_sort_dirty_flag = false;
+	}
 }
 
 /*
@@ -129,3 +151,4 @@ void Scene::eachText(std::function<void(ttf*, std::string key)> action)
 	for (auto& [ID, text] : TextMap)
 		action(text.get(), ID);
 }*/
+
