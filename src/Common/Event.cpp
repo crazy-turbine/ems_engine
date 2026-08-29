@@ -9,7 +9,7 @@
 namespace ems_engine
 {
 
-    void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager, EngineState& state, scene_ani_state& aniState, audio& sound_sys)
+    void EngineEvent(const SDL_Event& event, Render& window, SceneManager& uiManager)
     {
 
         if (event.type == SDL_EVENT_QUIT)
@@ -19,10 +19,10 @@ namespace ems_engine
 
         
 
-
+ /*
         if (event.type == SDL_EVENT_MOUSE_MOTION)
         {
-
+           
             SDL_RenderCoordinatesFromWindow(window.getRenderer(), event.motion.x, event.motion.y, &state.mouseX, &state.mouseY);
             uiManager.getCurrentScene()->OneEntityMap
             (
@@ -188,7 +188,7 @@ namespace ems_engine
                 state.TargetButton = nullptr;
             }
         }
-
+*/
 
 
     }

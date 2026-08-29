@@ -1,7 +1,13 @@
 #include "src/Object/Create.h"
-#include "src/Object/Entity.h"
+//#include "src/Object/Entity.h"
 #include "src/Resource/json.h"
 #include "third_party/magic_enum/magic_enum.hpp"
+#include "Common/toHash.h"
+#include "UIElement/UIButton.h"
+#include "UIElement/UICheckBox.h"
+#include "UIElement/UIElement.h"
+#include "UIElement/UISlider.h"
+#include "UIElement/UIStateElement.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 
@@ -24,18 +30,34 @@ namespace ems_engine
 			std::string entityID;
 			std::string EntityType;
 			std::string to_enum;
+			std::string to_vector = "";
 			configValue.sceneID = Manager.getSceneID();
 			readJson(item, "/x"_json_pointer, configValue.x);
 			readJson(item, "/y"_json_pointer, configValue.y);
 			readJson(item, "/w"_json_pointer, configValue.w);
 			readJson(item, "/h"_json_pointer, configValue.h);
 			readJson(item, "/series_num"_json_pointer, configValue.series_num);
-			readJson(item, "/path1"_json_pointer, configValue.TexturePath.at(0));
+			readJson(item, "/path1"_json_pointer, to_vector);
+			if(!to_vector.empty())
+			configValue.TexturePath.push_back(to_vector);
+			to_vector = "";
 			readJson(item, "/entity_type"_json_pointer, EntityType);
-			readJson(item, "/path2"_json_pointer, configValue.TexturePath.at(1));
+			readJson(item, "/path2"_json_pointer, to_vector);
+			configValue.TexturePath.push_back(to_vector);
+			if (!to_vector.empty())
+				configValue.TexturePath.push_back(to_vector);
+			to_vector = "";
 			readJson(item, "/actionID"_json_pointer, configValue.actionID);
-			readJson(item, "/path3"_json_pointer, configValue.TexturePath.at(2));
-			readJson(item, "/path4"_json_pointer, configValue.TexturePath.at(3));
+			readJson(item, "/path3"_json_pointer, to_vector);
+			configValue.TexturePath.push_back(to_vector);
+			if (!to_vector.empty())
+				configValue.TexturePath.push_back(to_vector);
+			to_vector = "";
+			readJson(item, "/path4"_json_pointer, to_vector);
+			configValue.TexturePath.push_back(to_vector);
+			if (!to_vector.empty())
+				configValue.TexturePath.push_back(to_vector);
+			to_vector = "";
 			readJson(item, "/slide_button"_json_pointer, configValue.slide_button);
 			readJson(item, "/layer"_json_pointer, to_enum);
 			if (magic_enum::enum_cast<layer_ID>(to_enum).has_value())
@@ -44,17 +66,97 @@ namespace ems_engine
 			{
 				std::cout << "[ERROR]:LayerID undefined" << std::endl << to_enum << std::endl;
 				continue;
-			}
-
+			}			
 			readJson(item, "/entityID"_json_pointer, entityID);
 
-
-
-			Manager.getCurrentScene()->addEntity(EntityType, entityID, configValue, window);
+			if (EntityType == "UIElement")
+			{
+				UIElement* obj = Manager.getCurrentScene()->addObject<UIElement>(entityID);
+				obj->setPos(configValue.x, configValue.y);
+				obj->setSize(configValue.w, configValue.h);
+				if (0 < configValue.TexturePath.size())
+					obj->setCurrentTextureID(string_toHash(configValue.TexturePath.at(0)));
+				obj->setLayer(configValue.layer);
+				return;
+			}
+			if (EntityType == "UIStateElement")
+			{
+				UIStateElement* obj = Manager.getCurrentScene()->addObject<UIStateElement>(entityID);
+				obj->setPos(configValue.x, configValue.y);
+				obj->setSize(configValue.w, configValue.h);
+				if (0 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(0)}, "Default");
+				if (1 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(1)}, "Hover");
+				if (2 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(2)}, "CheckON");
+				if (3 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(3)}, "Hover_CheckON");
+				obj->setLayer(configValue.layer);
+				return;
+			}
+			if (EntityType == "UIButton")
+			{
+				UIButton* obj = Manager.getCurrentScene()->addObject<UIButton>(entityID);
+				obj->setPos(configValue.x, configValue.y);
+				obj->setSize(configValue.w, configValue.h);
+				if (0 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(0)}, "Default");
+				if (1 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(1)}, "Hover");
+				if (2 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(2)}, "CheckON");
+				if (3 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(3)}, "Hover_CheckON");
+				obj->setLayer(configValue.layer);
+				obj->setDefaultState("Default");
+				obj->setHoverState("Hover");
+				return;
+			}
+			if (EntityType == "UICheckBox")
+			{
+				UICheckBox* obj = Manager.getCurrentScene()->addObject<UICheckBox>(entityID);
+				obj->setPos(configValue.x, configValue.y);
+				obj->setSize(configValue.w, configValue.h);
+				if (0 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(0)}, "Default");
+				if (1 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(1)}, "Hover");
+				if (2 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(2)}, "CheckON");
+				if (3 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(3)}, "Hover_CheckON");
+				obj->setLayer(configValue.layer);
+				obj->setDefaultState("Default");
+				obj->setHoverState("Hover");
+				obj->setDefaultState("CheckON");
+				obj->setHoverState("Hover_CheckON");
+				return;
+			}
+			if (EntityType == "UISlider")
+			{
+				UISlider* obj = Manager.getCurrentScene()->addObject<UISlider>(entityID);
+				obj->setPos(configValue.x, configValue.y);
+				obj->setSize(configValue.w, configValue.h);
+				if (0 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(0)}, "Default");
+				if (1 < configValue.TexturePath.size())
+					obj->setVisualGroup(std::vector<std::string>{configValue.TexturePath.at(1)}, "Hover");
+				if (2 < configValue.TexturePath.size())
+					obj->setCurrentTextureID(string_toHash(configValue.TexturePath.at(2)), 1);
+				obj->setLayer(configValue.layer);
+				obj->setDefaultState("Default");
+				obj->setHoverState("Hover");
+				obj->setDefaultState("CheckON");
+				obj->setHoverState("Hover_CheckON");
+				return;
+			}
+			std::cout << "[Error]:Entity Type Not Found!" << std::endl;
+			//Manager.getCurrentScene()->addObject<>(EntityType, entityID, configValue, window);
 		}
 	}
 
-	void createTEXT(SceneManager& Manager, std::string lang)
+	void createTEXT(SceneManager& Manager, std::string lang,ResourceManager* rc_mgr)
 	{
 		json style;
 		std::string path = "res/Text_config/style.json";
@@ -144,7 +246,7 @@ namespace ems_engine
 				}
 			}
 
-			Manager.getCurrentScene()->addText(configValue.Ttype, textID, configValue);
+			Manager.getCurrentScene()->addText(configValue.Ttype, textID, configValue, rc_mgr);
 		}
 	}
 	void createSprite(Render& window, int w, int h)
@@ -156,7 +258,7 @@ namespace ems_engine
 	{
 
 	}
-
+	/*
 	Sprite* getSprite(const std::string& name)
 	{
 		auto it = SpriteMap.find(name);
@@ -164,5 +266,5 @@ namespace ems_engine
 			return it->second;
 		std::cout << "getSprite	Error:Sprite Not Found" << std::endl;
 		return nullptr;
-	}
+	}*/
 }

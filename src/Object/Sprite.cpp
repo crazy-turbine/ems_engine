@@ -10,7 +10,7 @@ namespace ems_engine
 	Sprite::Sprite(std::string sceneID, float x, float y, float w, float h, const char* file_path, Render& window_0, int frames, Uint32 speed)
 		:frameWidth(w), frameHeight(h), frameCount(frames), currentFrame(0), animationSpeed(speed), flip_0(false), visible(true)
 	{
-		texture = readTexture(file_path, sceneID, window_0);
+		//texture = readTexture(file_path, sceneID, window_0);
 		destRect = { x,y,w,h };
 		srcRect = { 0,0,w,h };//第一幀
 		lastUpdateTime = SDL_GetTicks();
@@ -43,8 +43,8 @@ namespace ems_engine
 	{
 		flip_0 = flip;
 	}
-
-	bool Sprite::getflip()
+	
+	bool Sprite::isflip()
 	{
 		return flip_0;
 	}

@@ -23,6 +23,8 @@ namespace ems_engine
 		bool isDebugDrawEnabled() const;
 		Color getDebugDrawColor() const;
 
+		virtual void update(float delta_sec) {};
+
 		Object(const Object&) = delete;
 		Object& operator = (const Object&) = delete;
 		Object(Object&&) = delete;

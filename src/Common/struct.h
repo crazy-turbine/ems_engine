@@ -18,6 +18,8 @@ namespace ems_engine
 		float w = 0.0f;
 		float h = 0.0f;
 
+		uint8_t alpha = 255;
+
 		double angle = 0.0f;
 		bool useDefaultCenter = true;
 		float PointX = 0.0f;

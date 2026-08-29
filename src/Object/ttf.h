@@ -10,12 +10,12 @@ namespace ems_engine
 {
 
 	class Render;
-
+	class ResourceManager;
 	class ttf
 	{
 	public:
 
-		ttf(TextConfig config);
+		ttf(TextConfig config, ResourceManager* rc_mgr);
 		~ttf()
 		{
 			//std::cout << "TTF: 已被銷毀 (Deleted)! Address: " << this << std::endl;

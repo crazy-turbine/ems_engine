@@ -15,6 +15,9 @@ namespace ems_engine
 		void setVisible(bool visible);
 		bool isVisible() const;
 
+		void setAlpha(uint8_t alpha);
+		uint8_t getAlpha() const;
+
 		void setLayer(int layerID);
 		int getLayer() const;
 
@@ -29,6 +32,7 @@ namespace ems_engine
 	private:
 		int layer = 0;
 		bool visible_ = true;
+		uint8_t alpha_ = 255;
 		std::function<void()> on_transform_changed_callback;
 	};
 }

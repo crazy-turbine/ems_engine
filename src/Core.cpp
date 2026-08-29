@@ -1,10 +1,13 @@
 #include "include/ems_engine/Core.h"
-#include "src/Output/Audio.h"
-#include "src/Output/Render.h"
-#include "src/Resource/jsonManager.h"
-#include "src/Action/ActionBehavior.h"
-#include "src/Action/ActionPolicyManager.h"
-#include "src/Input/InputManager.h"
+#include "Output/Audio.h"
+#include "Output/Render.h"
+#include "Output/RenderManager.h"
+#include "Resource/jsonManager.h"
+#include "Scene/sceneManager.h"
+#include "Action/ActionBehavior.h"
+#include "Action/ActionPolicyManager.h"
+#include "Input/InputManager.h"
+#include "Common/Event.h"
 #include <SDL3/SDL_ttf.h>
 #include <SDL_image.h>
 #include <iostream>
@@ -24,29 +27,46 @@ namespace ems_engine
 		displayMode = nullptr;
 	}
 	Core::~Core() = default;
-	bool Core::init()
+	bool Core::init(std::function<void(Core*)> custom_init)
 	{
 		if (!initSDL())
 			return false;
-		if (!checkResolution())
-			return false;
+		/*if (!checkResolution())
+			return false;*/
 		if (!set_cursor())
 			return false;
 
 		render_sys = std::make_unique<Render>("A Day of Feb", windowWidth, windowHeight);
+		render_mgr = std::make_unique<RenderManager>();
 		ap_mgr = std::make_unique<ActionPolicyManager>();
 		button_def = std::make_unique<ActionBehavior>(ap_mgr.get());
-		input_mgr = std::make_unique<InputManager>(button_def.get());
-
+		ui_mgr = std::make_unique<SceneManager>();
+		input_mgr = std::make_unique<InputManager>(button_def.get(), ui_mgr.get());
+		
+		custom_init(this);
+		app = true;
 		return true;
 	}
-	void Core::run()
+	void Core::run(std::function<void(Core*)> custom_update)
 	{
-		bool app = true;
 		while (app)
 		{
-			input_mgr->InputRefresh();
+			handleEvents();
+			
+			if (!render_mgr->runRender(*render_sys.get(), *ui_mgr.get()))
+			{
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "A Day of Feb", "您的遊戲檔案不完整，無法正確載入材質。\n請嘗試將遊戲重新安裝，若嘗試後此情況扔然持續發生，請聯絡Evil Month Studio團隊。\n聯絡我們:evilmonth.studio@gmail.com", render_sys->getSDLWindow());
+				//MessageBoxW(nullptr, L"您的遊戲檔案不完整，無法正確載入材質。/n請嘗試將遊戲重新安裝，若嘗試後此情況扔然持續發生，請聯絡Evil Month Studio團隊。/n聯絡我們:evilmonth.studio@gmail.com", L"A Day of Feb", MB_OK | MB_ICONERROR);
+				app = false;
+			}
+
+			custom_update(this);
 		}
+	}
+	void Core::handleEvents()
+	{
+		input_mgr->InputRefresh();
+		EngineEvent(event, *render_sys.get(), *ui_mgr.get());
 	}
 	bool Core::initSDL()
 	{
@@ -115,5 +135,14 @@ namespace ems_engine
 		SDL_SetCursor(cur);
 		SDL_ShowCursor();
 		return true;
+	}
+
+	void Core::setActionGroup(std::string group_name, std::function<void()> group_function)
+	{
+		button_def->setActionGroup(group_name, group_function);
+	}
+	ActionPolicyManager* Core::getActionPolicyManager()
+	{
+		return ap_mgr.get();
 	}
 }

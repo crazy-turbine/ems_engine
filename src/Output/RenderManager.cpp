@@ -7,6 +7,7 @@
 #include "src/Object/TextureObject.h"
 #include "src/Output/Render.h"
 #include "src/Scene/SceneManager.h"
+#include "src/Resource/ResourceManager.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 //上面這段保佑這個專案乖乖，勿刪
@@ -15,13 +16,22 @@ namespace ems_engine
 {
 
 
-	std::vector<TextureObject*> RenderManager::renderQueue;
 
-	void RenderManager::EntityRender(TextureObject& obj, Render& window)
+	void RenderManager::setRecouceManagerPtr(ResourceManager* rc_manager)
 	{
+		resource_manager_ = rc_manager;
+	}
+
+	void RenderManager::EntityRender(TextureObject& obj, Render& window, std::string sceneID)
+	{
+		if (resource_manager_ == nullptr)
+		{
+			std::cout << "[Error]:Resource Manager Pointer Not Found!" << std::endl;
+			return;
+		}
 		if (obj.isVisible())
 		{
-			window.RenderEntity(obj.getRenderConfig());
+			window.RenderEntity(obj.getRenderConfig(),resource_manager_->getTexture(obj.getRenderConfig().textureID,sceneID,window).get());
 		}
 
 	}
@@ -82,7 +92,7 @@ namespace ems_engine
 
 		for (auto* e : renderQueue)
 		{
-			EntityRender(*e, window);
+			EntityRender(*e, window, uiManager.getSceneID());
 		}
 
 		uiManager.getCurrentScene()->eachText
@@ -92,13 +102,12 @@ namespace ems_engine
 				text->render(window);
 			}
 		);
-		uiManager.getGlobalScene()->OneEntityMap
+		uiManager.getGlobalScene()->ExecuteOneTypeObject<TextureObject>
 		(
-			"object",
-			[&](Entity* entity)
+			[&](TextureObject* entity)
 			{
 				if (entity)
-					EntityRender(*entity, window);
+					EntityRender(*entity, window, "global");
 			}
 		);
 

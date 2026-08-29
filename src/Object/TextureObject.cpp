@@ -22,6 +22,7 @@ namespace ems_engine
 		render_data.y = getPos().y;
 		render_data.w = getSize().w;
 		render_data.h = getSize().h;
+		render_data.alpha = getAlpha();
 		render_data.textureID = getCurrentTextureID();
 		return render_data;
 	}
@@ -33,7 +34,14 @@ namespace ems_engine
 	{
 		return visible_;
 	}
-
+	void TextureObject::setAlpha(uint8_t alpha)
+	{
+		alpha_ = alpha;
+	}
+	uint8_t TextureObject::getAlpha() const
+	{
+		return alpha_;
+	}
 	void TextureObject::setLayer(int layerID)
 	{
 		layer = layerID;
@@ -47,5 +55,9 @@ namespace ems_engine
 	void TextureObject::setOnTransformChangedCallback(std::function<void()> callback)
 	{
 		on_transform_changed_callback = callback;
+	}
+	void TextureObject::onPosChanged()
+	{
+		on_transform_changed_callback();
 	}
 }

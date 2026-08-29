@@ -97,7 +97,7 @@ namespace ems_engine
 		clear();
 	}
 
-	void Render::RenderEntity(RenderConfig config)
+	void Render::RenderEntity(RenderConfig config, SDL_Texture* texture)
 	{
 		SDL_FlipMode fliptype;
 
@@ -133,8 +133,8 @@ namespace ems_engine
 		}
 
 
-
-		SDL_RenderTextureRotated(renderer, config.Texture, nullptr, &dst, config.angle, center, fliptype);
+		SDL_SetTextureAlphaMod(texture, config.alpha);
+		SDL_RenderTextureRotated(renderer, texture, nullptr, &dst, config.angle, center, fliptype);
 	}
 
 	void Render::renderText(SDL_Texture* Texture, SDL_FRect render)

@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
 #include "Common/toHash.h"
+#include <SDL3/SDL.h>
 #include <iostream>
 
 /*
@@ -40,6 +41,7 @@ namespace ems_engine
 				std::cout << "[ERROR]:loadTexture Failed! file_path:" << file_path << std::endl;
 				return 0;
 			}
+			SDL_SetTextureBlendMode(rawtex, SDL_BLENDMODE_BLEND);
 			textureCache[sceneID][path_hash] = std::shared_ptr<SDL_Texture>
 				(
 					rawtex, [](SDL_Texture* t)
@@ -63,6 +65,19 @@ namespace ems_engine
 			if (mapIt != map.end())
 			{
 				return mapIt->second;
+			}
+		}
+		else
+		{
+			scene_IDIt = textureCache.find("global");
+			if (scene_IDIt != textureCache.end())
+			{
+				texture_map& map = scene_IDIt->second;
+				auto mapIt = map.find(0);
+				if (mapIt != map.end())
+				{
+					return mapIt->second;
+				}
 			}
 		}
 		return nullptr;

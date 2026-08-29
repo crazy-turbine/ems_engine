@@ -13,17 +13,19 @@ namespace ems_engine
 
 	class ID_Converter;
 	class SceneManager;
+	class ResourceManager;
 	class TextureObject;
 	class Render;
 
 	class RenderManager
 	{
 	public:
-
-		static bool runRender(Render& window, SceneManager& uiManager);
-		static void EntityRender(TextureObject& obj, Render& window);
-		static void refreshUIText(std::string language, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter);
+		void setRecouceManagerPtr(ResourceManager* rc_manager);
+		bool runRender(Render& window, SceneManager& uiManager);
+		void refreshUIText(std::string language, SceneManager& uiManager, SDL_Renderer* renderer, ID_Converter& converter);
 	private:
-		static std::vector<TextureObject*> renderQueue;
+		void EntityRender(TextureObject& obj, Render& window, std::string sceneID);
+		std::vector<TextureObject*> renderQueue;
+		ResourceManager* resource_manager_ = nullptr;
 	};
 }

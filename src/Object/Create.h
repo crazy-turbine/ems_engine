@@ -1,7 +1,7 @@
 #pragma once
-#include "src/Object/Entity.h"
-#include "src/Object/ttf.h"
-#include "src/Object/Sprite.h"
+//#include "src/Object/Entity.h"
+//#include "src/Object/ttf.h"
+//#include "src/Object/Sprite.h"
 //#include "src/Common/function.h"
 #include <vector>
 #include <map>
@@ -14,16 +14,16 @@
 
 namespace ems_engine
 {
-
+	class Sprite;
+	class ttf;
 	//extern std::map<std::string, Entity*> EntityMap;
-	extern std::map<std::string, Sprite*> SpriteMap;
+	//extern std::map<std::string, Sprite*> SpriteMap;
 
 	void createEntity(Render& window, SceneManager& Manager);
 	void createTEXT(SceneManager& Manager, std::string lang);
-	void createSprite(Render& window, int w, int h);
+	//void createSprite(Render& window, int w, int h);
 	void createMap(Render& window, int w, int h);
-	Entity* getEntity(const std::string& name);
-	Sprite* getSprite(const std::string& name);
+	//Sprite* getSprite(const std::string& name);
 	//Map* getMap(const std::string& name);
 
 	//清理所有實體

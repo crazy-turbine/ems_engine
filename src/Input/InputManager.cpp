@@ -3,14 +3,17 @@
 #include "MouseInput.h"
 #include "src/Common/enum.h"
 #include "src/Action/ActionBehavior.h"
+#include "Object/UIElement/UIButton.h"
+#include "Scene/SceneManager.h"
 #include <vector>
 
 namespace ems_engine
 {
 
-	InputManager::InputManager(ActionBehavior* bh)
+	InputManager::InputManager(ActionBehavior* bh, SceneManager* sc_mgr)
 	{
 		a_bh = bh;
+		scene_mgr = sc_mgr;
 		Kinput = std::make_unique<KeyboardInput>();
 		Minput = std::make_unique<MouseInput>();
 		//Ginput = std::make_unique<GamepadInput>();
@@ -31,13 +34,50 @@ namespace ems_engine
 		float MouseX, MouseY;
 		if (Minput->UpdateState(Mlist,MouseX,MouseY))
 		{
+			bool left_down = false;
+			key_state left_state;
 			for (const auto Key : Mlist)
 			{
 				a_bh->ButtonExcute(Key.first);
 				if (Key.first == mouse_code::Left)
 				{
-
+					left_down = true;
+					left_state = Key.second;
+					
 				}
+			}
+			scene_mgr->getCurrentScene()->ExecuteOneTypeObject<UIButton>
+				(
+					[&](UIButton* button, std::string key)
+					{
+						if (button->contains(MouseX, MouseY))
+						{
+							button->setHoverOn(true);
+							if (left_state == key_state::down)
+							{
+								click_down_objID = key;
+							}
+							if (left_state == key_state::up)
+							{
+								click_up_objID = key;
+							}
+						}
+						else
+						{
+							button->setHoverOn(false);
+						}
+					}
+				);
+			if (!click_up_objID.empty() && click_up_objID == click_down_objID)
+			{
+				a_bh->ButtonExcute(click_up_objID);
+				click_down_objID = "";
+				click_up_objID = "";
+			}
+			if (!left_down)
+			{
+				click_down_objID = "";
+				click_up_objID = "";
 			}
 
 		}

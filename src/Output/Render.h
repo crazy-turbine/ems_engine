@@ -29,7 +29,7 @@ namespace ems_engine
 		SDL_Texture* loadTexture(const char* file_path);
 		void endWindow();
 		void beforeRender();
-		void RenderEntity(RenderConfig config);
+		void RenderEntity(RenderConfig config, SDL_Texture* texture);
 		void renderText(SDL_Texture* Texture, SDL_FRect render);
 		SDL_Renderer* getRenderer() const;
 		SDL_Window* getSDLWindow() const;

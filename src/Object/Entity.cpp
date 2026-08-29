@@ -33,7 +33,7 @@ namespace ems_engine
 		if (!config.path4.empty())
 			texture4 = readTexture(config.path4, config.sceneID, window_0);
 		*/
-		RenderData.Texture = Texture.at(TextureIndex).get();
+		//RenderData.Texture = Texture.at(TextureIndex).get();
 
 		if (Texture.at(0) != nullptr)
 		{
@@ -82,7 +82,7 @@ namespace ems_engine
 	void Entity::setTex_num(int tex_num)
 	{
 		TextureIndex = tex_num;
-		RenderData.Texture = Texture.at(TextureIndex).get();
+		//RenderData.Texture = Texture.at(TextureIndex).get();
 	}
 
 	int Entity::getTex_num()

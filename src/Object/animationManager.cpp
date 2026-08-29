@@ -2,6 +2,7 @@
 #include "src/Timer/timerManager.h"
 #include "src/Scene/SceneManager.h"
 #include "src/Common/enum.h"
+#include "UIElement/UIElement.h"
 
 namespace ems_engine
 {
@@ -15,17 +16,17 @@ namespace ems_engine
 			if (!TimerMap["scene_animationIN"]->checkTime())
 			{
 				float x = std::lerp(3840.0f, -1920.0f, TimerMap["scene_animationIN"]->getEasedProgress());
-				float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
+				float y = uiManager.getGlobalScene()->getObject("animation")->getPos().y;
 				//std::cout << "[IN] animation set position" << std::endl;
 				//std::cout << "setup:" << ani.x << "," << ani.y << std::endl;
-				uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
+				uiManager.getGlobalScene()->getObject("animation")->setPos(x, y);
 				return true;
 			}
 			else
 			{
 				float x = -3840.0f;
-				float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
-				uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
+				float y = uiManager.getGlobalScene()->getObject("animation")->getPos().y;
+				uiManager.getGlobalScene()->getObject("animation")->setPos(x, y);
 				deleteTimer("scene_animationIN");
 				state = scene_ani_state::aniOUT;
 				return false;
@@ -44,17 +45,17 @@ namespace ems_engine
 			if (!TimerMap["scene_animationOUT"]->checkTime())
 			{
 				float x = std::lerp(-1920.0f, 3840.0f, TimerMap["scene_animationOUT"]->getEasedProgress());
-				float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
+				float y = uiManager.getGlobalScene()->getObject("animation")->getPos().y;
 				//std::cout << "[OUT] animation set position" << std::endl;
 				//std::cout << "home:" << ani.x << "," << ani.y << std::endl;
-				uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
+				uiManager.getGlobalScene()->getObject("animation")->setPos(x, y);
 				return true;
 			}
 			else
 			{
 				float x = 3840.0f;
-				float y = uiManager.getGlobalScene()->getEntity("object", "animation")->getPos().y;
-				uiManager.getGlobalScene()->getEntity("object", "animation")->setPos(x, y);
+				float y = uiManager.getGlobalScene()->getObject("animation")->getPos().y;
+				uiManager.getGlobalScene()->getObject("animation")->setPos(x, y);
 				deleteTimer("scene_animationOUT");
 				state = scene_ani_state::None;
 				return false;
@@ -72,16 +73,16 @@ namespace ems_engine
 			return false;
 		if (createTimer("intro_animation_wait", 1.5))
 		{
-			uiManager.getCurrentScene()->eachEntity
+			uiManager.getCurrentScene()->ExecuteOneTypeObject<UIElement>
 			(
-				[&](Entity* entity, std::string key)
+				[&](UIElement* obj, std::string key)
 				{
 					if (key != "home_shadow" && key != "home_ADOF_Logo")
-						entity->setAlpha(0);
+						obj->setAlpha(0);
 					if (key == "home_ADOF_Logo")
 					{
-						entity->setPos(640, 360);
-						entity->CurrentFrame(2560, 1440);
+						obj->setPos(640, 360);
+						obj->setSize(2560, 1440);
 					}
 				}
 
@@ -100,18 +101,18 @@ namespace ems_engine
 			createTimer("intro_animation", 1);
 			if (!TimerMap["intro_animation"]->checkTime())
 			{
-				uiManager.getCurrentScene()->eachEntity
+				uiManager.getCurrentScene()->ExecuteOneTypeObject<UIElement>
 				(
-					[&](Entity* entity, std::string key)
+					[&](UIElement* obj, std::string key)
 					{
 						if (key != "home_shadow" && key != "home_ADOF_Logo")
 						{
-							entity->setAlpha(std::lerp(0, 255, TimerMap["intro_animation"]->getEasedProgress()));
+							obj->setAlpha(std::lerp(0, 255, TimerMap["intro_animation"]->getEasedProgress()));
 						}
 						if (key == "home_ADOF_Logo")
 						{
-							entity->CurrentFrame(std::lerp(2560, 1920, TimerMap["intro_animation"]->getEasedProgress()), std::lerp(1440, 1080, TimerMap["intro_animation"]->getEasedProgress()));
-							entity->setPos((3840 - entity->getCurrentFrame().w) / 2, std::lerp(360, -230, TimerMap["intro_animation"]->getEasedProgress()));
+							obj->setSize(std::lerp(2560, 1920, TimerMap["intro_animation"]->getEasedProgress()), std::lerp(1440, 1080, TimerMap["intro_animation"]->getEasedProgress()));
+							obj->setPos((3840 - obj->getSize().w) / 2, std::lerp(360, -230, TimerMap["intro_animation"]->getEasedProgress()));
 						}
 					}
 
@@ -128,15 +129,15 @@ namespace ems_engine
 			}
 			else
 			{
-				uiManager.getCurrentScene()->eachEntity
+				uiManager.getCurrentScene()->ExecuteOneTypeObject<UIElement>
 				(
-					[&](Entity* entity, std::string key)
+					[&](UIElement* obj, std::string key)
 					{
-						entity->setAlpha(255);
+						obj->setAlpha(255);
 						if (key == "home_ADOF_Logo")
 						{
-							entity->CurrentFrame(1920, 1080);
-							entity->setPos((3840 - entity->getCurrentFrame().w) / 2, -230);
+							obj->setSize(1920, 1080);
+							obj->setPos((3840 - obj->getSize().w) / 2, -230);
 						}
 					}
 				);

@@ -13,7 +13,7 @@ namespace ems_engine
 		UIStateElement();
 		UIStateElement(float x, float y, float w, float h, const std::vector<std::string>& visual_group, std::string_view state, float fps);
 		
-		void update(float delta_sec);
+		void update(float delta_sec) override;
 		
 		void setCurrentVisualState(uint64_t state);
 		void setCurrentVisualState(std::string_view state);

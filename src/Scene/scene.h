@@ -39,7 +39,7 @@ namespace ems_engine
 				return nullptr;
 			}
 		}
-		void addText(text_type type, std::string textID, TextConfig& configValue);
+		void addText(text_type type, std::string textID, TextConfig& configValue, ResourceManager* rc_mgr);
 		void ExecuteAllObject(std::function<void(Object*)> action);
 		void ExecuteAllObject(std::function<void(Object*, std::string key)> action);
 		template<typename T = Object>

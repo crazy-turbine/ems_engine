@@ -5,11 +5,11 @@ namespace ems_engine
 {
 
 
-	void Scene::addText(text_type type, std::string textID, TextConfig& configValue)
+	void Scene::addText(text_type type, std::string textID, TextConfig& configValue,ResourceManager* rc_mgr)
 	{
 		TextMap[type].emplace
 		(
-			textID, std::make_unique<ttf>(configValue)
+			textID, std::make_unique<ttf>(configValue, rc_mgr)
 		);
 	}
 

@@ -5,14 +5,14 @@
 namespace ems_engine
 {
 
-	ttf::ttf(TextConfig config)
+	ttf::ttf(TextConfig config,ResourceManager* rc_mgr)
 		:display_type(config.Ltype), TextType(config.Ttype), color(config.color), startX(config.startX), endX(config.endX), originalY(config.y), Ofont_path(config.path)
 	{
 		conditionTarget = config.conditionTarget;
 		default_text = config.default_text;
 		haveValue_text = config.haveValue_text;
 
-		Ofont = readFont(Ofont_path, config.size);
+		Ofont = rc_mgr->readFont(Ofont_path, config.size);
 		max_wide = endX - startX - 60;
 		switch (display_type)
 		{
