@@ -27,7 +27,7 @@ namespace ems_engine
 
 	private:
 		//動作執行條件選擇器
-		std::function<std::string()> ConditionSelector;
+		std::function<std::string()> ConditionSelector = nullptr;
 		//<(std::string)條件,(std::vector)動作流程組<動作組ID>> 動作執行列表
 		std::unordered_map<std::string, actionf> ActionExecuteMap;
 	};

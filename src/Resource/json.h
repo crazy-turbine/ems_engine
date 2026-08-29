@@ -177,8 +177,8 @@ namespace ems_engine
 			std::cout << "[EXCEPTION]:" << e.what() << std::endl;
 			return false;
 		}
-		std::cout << "[DEBUG]:Key Not Found-";
-		//std::cout << "js_ptr:" << js_ptr << " value:" << value << std::endl;
+		std::cout << "[DEBUG]:ReadJson Key Not Found - ";
+		std::cout << "js_ptr:" << js_ptr << std::endl;
 		return false;
 	}
 

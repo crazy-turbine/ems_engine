@@ -143,7 +143,7 @@ namespace ems_engine
 		auto it = ActionPolicyList.find(hash);
 		if (it == ActionPolicyList.end())
 		{
-			std::cout << "[Debug]:ActionPolicy not found" << std::endl;
+			std::cout << "[DEBUG]:ActionPolicy not found" << std::endl;
 			return nullptr;
 		}
 		else

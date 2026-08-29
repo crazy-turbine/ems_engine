@@ -5,15 +5,17 @@
 #include "src/Action/ActionBehavior.h"
 #include "Object/UIElement/UIButton.h"
 #include "Scene/SceneManager.h"
+#include "Output/Render.h"
 #include <vector>
 
 namespace ems_engine
 {
 
-	InputManager::InputManager(ActionBehavior* bh, SceneManager* sc_mgr)
+	InputManager::InputManager(ActionBehavior* bh, SceneManager* sc_mgr, Render* render)
 	{
 		a_bh = bh;
 		scene_mgr = sc_mgr;
+		render_sys = render;
 		Kinput = std::make_unique<KeyboardInput>();
 		Minput = std::make_unique<MouseInput>();
 		//Ginput = std::make_unique<GamepadInput>();
@@ -32,7 +34,19 @@ namespace ems_engine
 			}
 		}
 		float MouseX, MouseY;
-		if (Minput->UpdateState(Mlist,MouseX,MouseY))
+		Minput->UpdateState(Mlist, MouseX, MouseY);
+		if (render_sys != nullptr)
+		{
+			float logicalMouseX, logicalMouseY;
+			SDL_RenderCoordinatesFromWindow
+			(
+				render_sys->getRenderer(),
+				MouseX, MouseY,
+				&logicalMouseX, &logicalMouseY
+			);
+			MouseX = logicalMouseX;
+			MouseY = logicalMouseY;
+		}
 		{
 			bool left_down = false;
 			key_state left_state;
@@ -53,6 +67,7 @@ namespace ems_engine
 						if (button->contains(MouseX, MouseY))
 						{
 							button->setHoverOn(true);
+							std::cout << "[DEBUG]: " << key << "Hover ON" << std::endl;
 							if (left_state == key_state::down)
 							{
 								click_down_objID = key;
@@ -65,6 +80,7 @@ namespace ems_engine
 						else
 						{
 							button->setHoverOn(false);
+							//std::cout << "[DEBUG]: " << key << "Hover OFF" << std::endl;
 						}
 					}
 				);

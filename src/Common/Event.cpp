@@ -15,6 +15,7 @@ namespace ems_engine
         if (event.type == SDL_EVENT_QUIT)
         {
             uiManager.setTargetSceneID("game_exit");
+            uiManager.UpdateScene();
         }
 
         

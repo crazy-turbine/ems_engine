@@ -1,10 +1,8 @@
 #pragma once
 #include <string>
-#include <SDL3/SDL.h>
 #include <memory>
 #include <functional>
 #include <vector>
-#include "src/Common/idConverter.h"
 
 
 
@@ -17,6 +15,9 @@ namespace ems_engine
 	class ActionBehavior;
 	class ActionPolicyManager;
 	class SceneManager;
+	class ID_Converter;
+	class ResourceManager;
+	struct EngineState;
 
 	class Core
 	{
@@ -24,10 +25,11 @@ namespace ems_engine
 		Core();
 		~Core();
 		bool init(std::function<void(Core*)> custom_init = {});
-		void run(std::function<void(Core*)> custom_update = {});
+		void run(std::function<bool(Core*)> custom_update = {});
 
 		void setActionGroup(std::string group_name, std::function<void()> group_function);
 		ActionPolicyManager* getActionPolicyManager();
+		SceneManager* getUIManager();
 
 	private:
 		bool initSDL();
@@ -35,9 +37,9 @@ namespace ems_engine
 		bool checkResolution();
 		bool set_cursor();
 		void handleEvents();
-		SDL_DisplayID Display;
-		SDL_Event event{};
-		const SDL_DisplayMode* displayMode;
+		struct SDLData;
+		std::unique_ptr<SDLData> sdl_data; 
+		std::unique_ptr<EngineState> state;
 		std::unique_ptr<Render> render_sys;
 		std::unique_ptr<RenderManager> render_mgr;
 		std::unique_ptr<audio> sound_sys;
@@ -45,6 +47,8 @@ namespace ems_engine
 		std::unique_ptr<ActionBehavior> button_def;
 		std::unique_ptr<ActionPolicyManager> ap_mgr;
 		std::unique_ptr<SceneManager> ui_mgr;
+		std::unique_ptr<ResourceManager> rc_mgr;
+		//std::unique_ptr<ID_Converter> id_converter;
 		bool app = false;
 		int windowWidth;
 		int windowHeight;

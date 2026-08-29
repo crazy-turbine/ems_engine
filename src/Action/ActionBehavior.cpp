@@ -21,8 +21,14 @@ namespace ems_engine
 
 	void ActionBehavior::ButtonExcute(const std::string& code)
 	{
-		std::vector<std::string> actionf =
-			action_policy_manager->getActionPolicy(code)->getActionFlow();
+		ActionPolicy* policy = action_policy_manager->getActionPolicy(code);
+
+		if (policy == nullptr)
+		{
+			return;
+		}
+
+		std::vector<std::string> actionf = policy->getActionFlow();
 		for (auto action_groupID : actionf)
 		{
 			ActionExcute(action_groupID);
@@ -31,8 +37,14 @@ namespace ems_engine
 	}
 	void ActionBehavior::ButtonExcute(keyboard_code code)
 	{
-		std::vector<std::string> actionf =
-			action_policy_manager->getActionPolicy(code)->getActionFlow();
+		ActionPolicy* policy = action_policy_manager->getActionPolicy(code);
+
+		if (policy == nullptr)
+		{
+			return;
+		}
+
+		std::vector<std::string> actionf = policy->getActionFlow();
 		for (auto action_groupID : actionf)
 		{
 			ActionExcute(action_groupID);
@@ -40,8 +52,14 @@ namespace ems_engine
 	}
 	void ActionBehavior::ButtonExcute(mouse_code code)
 	{
-		std::vector<std::string> actionf =
-			action_policy_manager->getActionPolicy(code)->getActionFlow();
+		ActionPolicy* policy = action_policy_manager->getActionPolicy(code);
+
+		if (policy == nullptr)
+		{
+			return;
+		}
+
+		std::vector<std::string> actionf = policy->getActionFlow();
 		for (auto action_groupID : actionf)
 		{
 			ActionExcute(action_groupID);
@@ -49,8 +67,14 @@ namespace ems_engine
 	}
 	void ActionBehavior::ButtonExcute(gamepad_code code)
 	{
-		std::vector<std::string> actionf =
-			action_policy_manager->getActionPolicy(code)->getActionFlow();
+		ActionPolicy* policy = action_policy_manager->getActionPolicy(code);
+
+		if (policy == nullptr)
+		{
+			return;
+		}
+
+		std::vector<std::string> actionf = policy->getActionFlow();
 		for (auto action_groupID : actionf)
 		{
 			ActionExcute(action_groupID);

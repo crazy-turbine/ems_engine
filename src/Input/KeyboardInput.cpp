@@ -11,6 +11,12 @@ namespace ems_engine
 		key_list.clear();
 		int numkeys;
 		CurrState = SDL_GetKeyboardState(&numkeys);
+
+		if (PrevState.size() != static_cast<std::size_t>(numkeys))
+		{
+			PrevState.assign(numkeys, false);
+		}
+
 		for (int i = 0; i < numkeys; i++)
 		{
 			bool isCurrDown = CurrState[i];

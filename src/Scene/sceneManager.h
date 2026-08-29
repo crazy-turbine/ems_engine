@@ -6,10 +6,13 @@
 
 namespace ems_engine
 {
+	class ResourceManager;
+	class Render;
 
 	class SceneManager
 	{
 	public:
+		SceneManager(ResourceManager* rcm,Render* render);
 		Scene* getCurrentScene();
 		Scene* getGlobalScene();
 		std::string getSceneID();
@@ -24,5 +27,7 @@ namespace ems_engine
 		std::unordered_map<std::string, std::unique_ptr<Scene>> SceneMap;
 		std::string currentScene = "global";
 		std::string targetScene = "global";
+		ResourceManager* rc_mgr;
+		Render* render_sys;
 	};
 }

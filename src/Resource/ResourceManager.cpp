@@ -19,19 +19,20 @@ namespace ems_engine
 	{
 		if (file_path.empty())
 		{
-			std::cout << "[ERROR]:file_path=" << file_path << "sceneID=" << sceneID << std::endl;
+			std::cout << "[ERROR]:file_path is empty when loadtexture sceneID=" << sceneID << std::endl;
 			return 0;
 		}
 		uint64_t path_hash = string_toHash(file_path);
 		auto scene_IDIt = textureCache.find(sceneID);
-		if (scene_IDIt != textureCache.end())
+		if (scene_IDIt == textureCache.end())
 		{
-			texture_map& map = scene_IDIt->second;
-			auto mapIt = map.find(path_hash);
-			if (mapIt != map.end())
-			{
-				return path_hash;
-			}
+			textureCache.try_emplace(sceneID);
+		}
+		texture_map& map = textureCache.find(sceneID)->second;
+		auto mapIt = map.find(path_hash);
+		if (mapIt != map.end())
+		{
+			return path_hash;
 		}
 		else
 		{
@@ -52,6 +53,8 @@ namespace ems_engine
 				);
 			return path_hash;
 		}
+			
+		
 		
 	}
 	std::shared_ptr<SDL_Texture> ResourceManager::getTexture(uint64_t file_path, std::string sceneID, Render& window)

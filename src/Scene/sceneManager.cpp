@@ -1,10 +1,15 @@
 #include "sceneManager.h"
 #include <iostream>
+#include "Object/Create.h"
 //#include "third_party/magic_enum/magic_enum.hpp"
 
 namespace ems_engine
 {
-
+	SceneManager::SceneManager(ResourceManager* rcm, Render* render)
+	{
+		rc_mgr = rcm;
+		render_sys = render;
+	}
 	Scene* SceneManager::getCurrentScene()
 	{
 		auto scene_IDIt = SceneMap.find(currentScene);
@@ -38,6 +43,8 @@ namespace ems_engine
 			std::cout << "[Create]:Create Scene:" << sceneID << std::endl;
 			SceneMap.emplace(currentScene, std::make_unique<Scene>());
 		}
+		createEntity(*this, *rc_mgr, *render_sys);
+		createTEXT(*this, "zh_tw", rc_mgr);
 	}
 	void SceneManager::UpdateScene()
 	{

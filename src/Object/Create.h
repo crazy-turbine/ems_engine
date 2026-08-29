@@ -19,8 +19,8 @@ namespace ems_engine
 	//extern std::map<std::string, Entity*> EntityMap;
 	//extern std::map<std::string, Sprite*> SpriteMap;
 
-	void createEntity(Render& window, SceneManager& Manager);
-	void createTEXT(SceneManager& Manager, std::string lang);
+	void createEntity(SceneManager& Manager, ResourceManager& rc_mgr, Render& window);
+	void createTEXT(SceneManager& Manager, std::string lang, ResourceManager* rc_mgr);
 	//void createSprite(Render& window, int w, int h);
 	void createMap(Render& window, int w, int h);
 	//Sprite* getSprite(const std::string& name);
