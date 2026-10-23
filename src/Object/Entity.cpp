@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "src/Resource/ResourceManager.h"
 #include "src/Common/struct.h"
+#include "include/ems_engine/PublicStruct.h"
 //#include "third_party/magic_enum/magic_enum.hpp"
 //#include <Windows.h>
 

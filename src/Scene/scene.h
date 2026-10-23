@@ -6,8 +6,8 @@
 #include <functional>
 #include <iostream>
 #include <type_traits>
-#include "src/Object/Object.h"
-#include "src/Object/TextureObject.h"
+//#include "src/Object/Object.h"
+#include "include/ems_engine/Object/TextureObject.h"
 namespace ems_engine
 {
 	class Object;
@@ -87,6 +87,8 @@ namespace ems_engine
 		void OneTextMap(text_type type, std::function<void(ttf*)> action);
 		void OneTextMap(text_type type, std::function<void(ttf*, std::string key)> action);
 		ttf* getText(text_type type, std::string ID);
+
+		const std::unordered_map < std::string, std::unique_ptr<Object>>& getObjectMap();
 
 		bool getObjectMapDirtyFlag();
 		void resetObjectMapDirtyFlag();

@@ -1,5 +1,5 @@
 #include "scene.h"
-#include "src/Object/Object.h"
+#include "include/ems_engine/Object/Object.h"
 #include <iostream>
 namespace ems_engine
 {
@@ -116,6 +116,11 @@ namespace ems_engine
 		}
 		std::cout << "[ERROR]:Can't get Text" << std::endl;
 		return nullptr;
+	}
+
+	const std::unordered_map < std::string, std::unique_ptr<Object>>& Scene::getObjectMap()
+	{
+		return ObjectMap;
 	}
 
 	bool Scene::getObjectMapDirtyFlag()

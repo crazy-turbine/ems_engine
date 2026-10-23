@@ -3,10 +3,11 @@
 //#include "third_party/magic_enum/magic_enum.hpp"
 #include "src/Common/idConverter.h"
 #include "src/Resource/jsonManager.h"
-#include "src/Object/Object.h"
-#include "src/Object/TextureObject.h"
+#include "include/ems_engine/Object/Object.h"
+#include "include/ems_engine/Object/TextureObject.h"
 #include "src/Output/Render.h"
 #include "src/Scene/SceneManager.h"
+#include "Scene/Scene.h"
 #include "src/Resource/ResourceManager.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110

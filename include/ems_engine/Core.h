@@ -3,7 +3,7 @@
 #include <memory>
 #include <functional>
 #include <vector>
-
+#include "PublicStruct.h"
 
 
 namespace ems_engine
@@ -17,7 +17,7 @@ namespace ems_engine
 	class SceneManager;
 	class ID_Converter;
 	class ResourceManager;
-	struct EngineState;
+	class SceneAPI;
 
 	class Core
 	{
@@ -29,7 +29,12 @@ namespace ems_engine
 
 		void setActionGroup(std::string group_name, std::function<void()> group_function);
 		ActionPolicyManager* getActionPolicyManager();
-		SceneManager* getUIManager();
+		
+
+		const EngineState& getEngineConfig();
+
+		SceneAPI* UI_SceneAPI();
+
 
 	private:
 		bool initSDL();
@@ -49,8 +54,13 @@ namespace ems_engine
 		std::unique_ptr<SceneManager> ui_mgr;
 		std::unique_ptr<ResourceManager> rc_mgr;
 		//std::unique_ptr<ID_Converter> id_converter;
+
+		//API
+		std::unique_ptr<SceneAPI> ui_scene_api_;
+
 		bool app = false;
 		int windowWidth;
 		int windowHeight;
+		EngineState EngineConfig;
 	};
 }

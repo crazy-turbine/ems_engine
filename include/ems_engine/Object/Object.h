@@ -1,5 +1,5 @@
 #pragma once
-#include "src/Common/struct.h"
+#include "../PublicStruct.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 namespace ems_engine

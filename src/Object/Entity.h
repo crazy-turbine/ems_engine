@@ -1,4 +1,5 @@
 #pragma once
+#include "include/ems_engine/PublicStruct.h"
 #include "src/Common/struct.h"
 #include <vector>
 #include <memory>

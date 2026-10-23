@@ -8,9 +8,8 @@
 #include "Action/ActionPolicyManager.h"
 #include "Resource/ResourceManager.h"
 #include "Input/InputManager.h"
-#include "Common/idConverter.h"
 #include "Common/Event.h"
-#include "Common/enum.h"
+#include "include/ems_engine/SceneAPI.h"
 #include <SDL3/SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL3/SDL.h>
@@ -76,6 +75,10 @@ namespace ems_engine
 		input_mgr = std::make_unique<InputManager>(button_def.get(), ui_mgr.get(), render_sys.get());
 		
 		//id_converter = std::make_unique<ID_Converter>();
+
+
+		ui_scene_api_ = std::make_unique<SceneAPI>(ui_mgr.get());
+
 		sound_sys = std::make_unique<audio>();
 		sound_sys->initAudio();
 		render_mgr->setRecouceManagerPtr(rc_mgr.get());
@@ -131,6 +134,15 @@ namespace ems_engine
 
 		
 	}
+
+	const EngineState& Core::getEngineConfig()
+	{
+		return EngineConfig;
+	}
+
+
+
+	//private
 	void Core::handleEvents()
 	{
 		
@@ -222,8 +234,10 @@ namespace ems_engine
 	{
 		return ap_mgr.get();
 	}
-	SceneManager* Core::getUIManager()
+
+	SceneAPI* Core::UI_SceneAPI()
 	{
-		return ui_mgr.get();
+		return ui_scene_api_.get();
 	}
+
 }

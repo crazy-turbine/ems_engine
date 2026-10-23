@@ -20,6 +20,16 @@ namespace ems_engine
 		}
 		return SceneMap[currentScene].get();
 	}
+	Scene* SceneManager::getScene(std::string sceneID)
+	{
+		auto scene_IDIt = SceneMap.find(sceneID);
+		if (scene_IDIt == SceneMap.end())
+		{
+			std::cout << "[ERROR]:Scene Not Create!(getSceneWithSceneID)" << std::endl;
+			return nullptr;
+		}
+		return SceneMap[currentScene].get();
+	}
 	Scene* SceneManager::getGlobalScene()
 	{
 		auto scene_IDIt = SceneMap.find("global");

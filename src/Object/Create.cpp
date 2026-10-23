@@ -4,12 +4,13 @@
 #define MAGIC_ENUM_RANGE_MAX 2000
 #include "third_party/magic_enum/magic_enum.hpp"
 #include "Common/toHash.h"
-#include "UIElement/UIButton.h"
-#include "UIElement/UICheckBox.h"
-#include "UIElement/UIElement.h"
-#include "UIElement/UISlider.h"
-#include "UIElement/UIStateElement.h"
+#include "include/ems_engine/Object/UIElement/UIButton.h"
+#include "include/ems_engine/Object/UIElement/UICheckBox.h"
+#include "include/ems_engine/Object/UIElement/UIElement.h"
+#include "include/ems_engine/Object/UIElement/UISlider.h"
+#include "include/ems_engine/Object/UIElement/UIStateElement.h"
 #include "Resource/ResourceManager.h"
+#include "Scene/Scene.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 

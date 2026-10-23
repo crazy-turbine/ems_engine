@@ -1,8 +1,9 @@
 #include "animationManager.h"
 #include "src/Timer/timerManager.h"
 #include "src/Scene/SceneManager.h"
+#include "Scene/Scene.h"
 #include "src/Common/enum.h"
-#include "UIElement/UIElement.h"
+#include "include/ems_engine/Object/UIElement/UIElement.h"
 
 namespace ems_engine
 {

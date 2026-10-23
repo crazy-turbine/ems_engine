@@ -23,6 +23,7 @@
     <ClCompile Include="src\Action\ActionPolicy.cpp" />
     <ClCompile Include="src\Action\ActionPolicyManager.cpp" />
     <ClCompile Include="src\Action\ActionBehavior.cpp" />
+    <ClCompile Include="src\API\SceneAPI.cpp" />
     <ClCompile Include="src\Common\Event.cpp" />
     <ClCompile Include="src\Common\idConverter.cpp" />
     <ClCompile Include="src\Common\JsonValue.cpp" />
@@ -55,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Core.h" />
+    <ClInclude Include="include\ems_engine\PublicStruct.h" />
+    <ClInclude Include="include\ems_engine\SceneAPI.h" />
     <ClInclude Include="src\Action\Action.h" />
     <ClInclude Include="src\Action\ActionPolicy.h" />
     <ClInclude Include="src\Action\ActionPolicyManager.h" />
@@ -68,19 +71,19 @@
     <ClInclude Include="src\Object\animationManager.h" />
     <ClInclude Include="src\Object\Create.h" />
     <ClInclude Include="src\Object\Entity.h" />
-    <ClInclude Include="src\Object\Object.h" />
+    <ClInclude Include="include\ems_engine\Object\Object.h" />
     <ClInclude Include="src\Object\ObjectFactory.h" />
     <ClInclude Include="src\Object\Sprite.h" />
-    <ClInclude Include="src\Object\TextureObject.h" />
+    <ClInclude Include="include\ems_engine\Object\TextureObject.h" />
     <ClInclude Include="src\Object\ttf.h" />
     <ClInclude Include="src\Input\InputManager.h" />
     <ClInclude Include="src\Input\KeyboardInput.h" />
     <ClInclude Include="src\Input\MouseInput.h" />
-    <ClInclude Include="src\Object\UIElement\UIButton.h" />
-    <ClInclude Include="src\Object\UIElement\UICheckBox.h" />
-    <ClInclude Include="src\Object\UIElement\UIElement.h" />
-    <ClInclude Include="src\Object\UIElement\UISlider.h" />
-    <ClInclude Include="src\Object\UIElement\UIStateElement.h" />
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIButton.h" />
+    <ClInclude Include="include\ems_engine\Object\UIElement\UICheckBox.h" />
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIElement.h" />
+    <ClInclude Include="include\ems_engine\Object\UIElement\UISlider.h" />
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIStateElement.h" />
     <ClInclude Include="src\Output\Render.h" />
     <ClInclude Include="src\Output\RenderManager.h" />
     <ClInclude Include="src\Resource\json.h" />

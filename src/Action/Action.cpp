@@ -1,5 +1,5 @@
 #include "Action.h"
-#include "src/Common/struct.h"
+#include "include/ems_engine/PublicStruct.h"
 #include "src/Resource/jsonManager.h"
 #include "src/Output/Render.h"
 #include "src/Scene/SceneManager.h"
@@ -47,7 +47,7 @@ namespace ems_engine
 	void EngineAction::dragButton(Entity* button)
 	{
 		state->isDragging = true;
-		state->TargetButton = button;
+		//state->TargetButton = button;
 	}
 	/*void EngineAction::clickBar(Entity* button)
 	{

@@ -1,11 +1,12 @@
 #pragma once
-#include "scene.h"
-#include<unordered_map>
-#include "src/Common/enum.h"
+#include <unordered_map>
 #include <string>
+#include <memory>
+#include "scene.h"
 
 namespace ems_engine
 {
+	class Scene;
 	class ResourceManager;
 	class Render;
 
@@ -14,6 +15,7 @@ namespace ems_engine
 	public:
 		SceneManager(ResourceManager* rcm,Render* render);
 		Scene* getCurrentScene();
+		Scene* getScene(std::string sceneID);
 		Scene* getGlobalScene();
 		std::string getSceneID();
 		void setSceneID(std::string sceneID);

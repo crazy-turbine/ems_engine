@@ -114,6 +114,9 @@
     <ClCompile Include="src\Object\TextureObject.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="src\API\SceneAPI.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ems_engine\Core.h">
@@ -203,28 +206,34 @@
     <ClInclude Include="src\Common\toHash.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\Object.h">
+    <ClInclude Include="include\ems_engine\Object\Object.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIElement\UIElement.h">
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIElement.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\ObjectFactory.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIElement\UIButton.h">
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIButton.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIElement\UIStateElement.h">
+    <ClInclude Include="include\ems_engine\Object\UIElement\UIStateElement.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIElement\UICheckBox.h">
+    <ClInclude Include="include\ems_engine\Object\UIElement\UICheckBox.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\UIElement\UISlider.h">
+    <ClInclude Include="include\ems_engine\Object\UIElement\UISlider.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\TextureObject.h">
+    <ClInclude Include="include\ems_engine\Object\TextureObject.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ems_engine\SceneAPI.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ems_engine\PublicStruct.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
