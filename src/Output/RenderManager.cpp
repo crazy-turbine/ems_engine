@@ -52,10 +52,17 @@ namespace ems_engine
 					EntityRender(*entity, window);
 			}
 		);*/
-		if (uiManager.getCurrentScene()->getObjectMapDirtyFlag())
+
+		Scene* current_scene = uiManager.getCurrentScene();
+		if (current_scene == nullptr)
+		{
+			std::cout << "[ERROR]:current_scene not found!"<<std::endl;
+			return false;
+		}
+		if (current_scene->getObjectMapDirtyFlag())
 		{
 			renderQueue.clear();
-			uiManager.getCurrentScene()->ExecuteOneTypeObject<TextureObject>
+			current_scene->ExecuteOneTypeObject<TextureObject>
 			(
 				[&](TextureObject* entity)
 				{
@@ -74,7 +81,7 @@ namespace ems_engine
 			
 
 		}
-		else if(uiManager.getCurrentScene()->getObjectSortDirtyFlag())
+		else if(current_scene->getObjectSortDirtyFlag())
 		{
 			std::stable_sort(renderQueue.begin(), renderQueue.end(), [](TextureObject* a, TextureObject* b)
 				{
@@ -87,8 +94,8 @@ namespace ems_engine
 				});
 		}
 
-		uiManager.getCurrentScene()->resetObjectMapDirtyFlag();
-		uiManager.getCurrentScene()->resetObjectSortDirtyFlag();
+		current_scene->resetObjectMapDirtyFlag();
+		current_scene->resetObjectSortDirtyFlag();
 
 
 		for (auto* e : renderQueue)
@@ -96,21 +103,25 @@ namespace ems_engine
 			EntityRender(*e, window, uiManager.getSceneID());
 		}
 
-		uiManager.getCurrentScene()->eachText
+		current_scene->eachText
 		(
 			[&](ttf* text)
 			{
 				text->render(window);
 			}
 		);
-		uiManager.getGlobalScene()->ExecuteOneTypeObject<TextureObject>
-		(
-			[&](TextureObject* entity)
-			{
-				if (entity)
-					EntityRender(*entity, window, "global");
-			}
-		);
+		Scene* global_scene = uiManager.getGlobalScene();
+		if(global_scene!=nullptr)
+		{
+			global_scene->ExecuteOneTypeObject<TextureObject>
+				(
+					[&](TextureObject* entity)
+					{
+						if (entity)
+							EntityRender(*entity, window, "global");
+					}
+				);
+		}
 
 		window.display();
 		return true;

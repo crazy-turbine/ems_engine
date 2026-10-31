@@ -23,6 +23,7 @@
     <ClCompile Include="src\Action\ActionPolicy.cpp" />
     <ClCompile Include="src\Action\ActionPolicyManager.cpp" />
     <ClCompile Include="src\Action\ActionBehavior.cpp" />
+    <ClCompile Include="src\API\ActionAPI.cpp" />
     <ClCompile Include="src\API\SceneAPI.cpp" />
     <ClCompile Include="src\Common\Event.cpp" />
     <ClCompile Include="src\Common\idConverter.cpp" />
@@ -55,9 +56,11 @@
     <ClCompile Include="src\Timer\timerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ems_engine\ActionAPI.h" />
     <ClInclude Include="include\ems_engine\Core.h" />
     <ClInclude Include="include\ems_engine\PublicStruct.h" />
     <ClInclude Include="include\ems_engine\SceneAPI.h" />
+    <ClInclude Include="include\ems_engine\InputCode.h" />
     <ClInclude Include="src\Action\Action.h" />
     <ClInclude Include="src\Action\ActionPolicy.h" />
     <ClInclude Include="src\Action\ActionPolicyManager.h" />

@@ -18,6 +18,7 @@ namespace ems_engine
 	class ID_Converter;
 	class ResourceManager;
 	class SceneAPI;
+	class ActionAPI;
 
 	class Core
 	{
@@ -42,6 +43,9 @@ namespace ems_engine
 		bool checkResolution();
 		bool set_cursor();
 		void handleEvents();
+
+		void set_config();
+
 		struct SDLData;
 		std::unique_ptr<SDLData> sdl_data; 
 		std::unique_ptr<EngineState> state;
@@ -57,6 +61,7 @@ namespace ems_engine
 
 		//API
 		std::unique_ptr<SceneAPI> ui_scene_api_;
+		std::unique_ptr<ActionAPI> action_api_;
 
 		bool app = false;
 		int windowWidth;

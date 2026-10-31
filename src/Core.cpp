@@ -85,8 +85,10 @@ namespace ems_engine
 
 		ui_mgr->setTargetSceneID("global");
 		ui_mgr->UpdateScene();
-		ui_mgr->setTargetSceneID("home");
-		ui_mgr->UpdateScene();
+		//ui_mgr->setTargetSceneID("home");
+		//ui_mgr->UpdateScene();
+
+		set_config();
 
 		if (custom_init)
 		{
@@ -226,18 +228,41 @@ namespace ems_engine
 		return true;
 	}
 
-	void Core::setActionGroup(std::string group_name, std::function<void()> group_function)
-	{
-		button_def->setActionGroup(group_name, group_function);
-	}
-	ActionPolicyManager* Core::getActionPolicyManager()
-	{
-		return ap_mgr.get();
-	}
+	
 
 	SceneAPI* Core::UI_SceneAPI()
 	{
 		return ui_scene_api_.get();
 	}
 
+	void Core::set_config()
+	{
+		std::string lang;
+		JsonManager::addJson("res/setting/setting.json");
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/language"_json_pointer, lang);
+		EngineConfig.Language = lang;
+		/*
+		std::string to_enum;
+		JsonManager::addJson("res/setting/setting.json");
+		
+		if (magic_enum::enum_cast<language_ID>(to_enum).has_value())
+			config.Language = magic_enum::enum_cast<language_ID>(to_enum).value();
+		else
+		{
+			std::cout << "[ERROR]:language_ID undefined" << std::endl << to_enum << std::endl;
+		}
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/set_vsync"_json_pointer, config.Vsync);
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/set_full"_json_pointer, config.fullscreen);
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/set_mousegrab"_json_pointer, config.mouseGrab);
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/set_meta"_json_pointer, config.meta);
+		readJson(JsonManager::getJson("res/setting/setting.json"), "/set_volume"_json_pointer, config.volume);
+		if (config.fullscreen)
+		{
+			std::cout << "true" << std::endl;
+		}
+		else
+		{
+			std::cout << "false" << std::endl;
+		}*/
+	}
 }
