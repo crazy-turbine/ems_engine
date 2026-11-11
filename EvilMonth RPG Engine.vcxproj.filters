@@ -21,7 +21,7 @@
     <ClCompile Include="src\Output\Audio.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Resource\jsonManager.cpp">
+    <ClCompile Include="src\Resource\JsonManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Output\Render.cpp">
@@ -45,10 +45,10 @@
     <ClCompile Include="src\Common\idConverter.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene\scene.cpp">
+    <ClCompile Include="src\Scene\Scene.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene\sceneManager.cpp">
+    <ClCompile Include="src\Scene\SceneManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Object\Create.cpp">
@@ -128,10 +128,10 @@
     <ClInclude Include="src\Output\Audio.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Resource\json.h">
+    <ClInclude Include="src\Resource\JsonFileIO.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Resource\jsonManager.h">
+    <ClInclude Include="src\Resource\JsonManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Output\Render.h">
@@ -161,10 +161,10 @@
     <ClInclude Include="src\Common\idConverter.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scene\scene.h">
+    <ClInclude Include="src\Scene\Scene.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scene\sceneManager.h">
+    <ClInclude Include="src\Scene\SceneManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\Create.h">
