@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Common/enum.h"
+#include "include/ems_engine/InputCode.h"
 #include <unordered_map>
 #include <functional>
 #include <memory>

@@ -3,7 +3,7 @@
 #include "enum.h"
 #include <string>
 #include <vector>
-
+#include "include/ems_engine/InputCode.h"
 
 namespace ems_engine
 {

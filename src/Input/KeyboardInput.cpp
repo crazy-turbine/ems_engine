@@ -1,6 +1,7 @@
 #include "KeyboardInput.h"
 #include <SDL3/SDL.h>
 #include "src/Common/enum.h"
+#include "include/ems_engine/InputCode.h"
 
 
 namespace ems_engine
