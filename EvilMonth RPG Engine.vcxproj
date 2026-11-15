@@ -208,8 +208,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_mixer.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_mixer-unoffical\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)third_party\SDL\SDL3-3.2.18\lib\x64;$(ProjectDir)third_party\SDL\SDL3_image-3.2.4\lib\x64;$(ProjectDir)third_party\SDL\SDL3_ttf-3.1.0\lib\x64;$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
