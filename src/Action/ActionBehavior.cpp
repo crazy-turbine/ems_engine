@@ -80,9 +80,9 @@ namespace ems_engine
 			ActionExcute(action_groupID);
 		}
 	}
-	void ActionBehavior::setActionGroup(std::string group_name, std::function<void()> group_function)
+	void ActionBehavior::setActionGroup(std::string action_group_id, std::function<void()> group_function)
 	{
-		action_group.insert_or_assign(group_name, group_function);
+		action_group.insert_or_assign(action_group_id, group_function);
 	}
 	void ActionBehavior::ActionExcute(std::string action_groupID)
 	{

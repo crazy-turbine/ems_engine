@@ -87,55 +87,55 @@ namespace ems_engine
 	}
 
 
-	void ActionPolicyManager::addActionGroupID(std::string code, std::string group_name, std::string condition)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(std::string code, std::string group_name, std::string condition)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(condition, group_name);
+			AP->addActionGroupIdToActionFlow(condition, group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(keyboard_code code, std::string group_name, std::string condition)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(keyboard_code code, std::string group_name, std::string condition)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(condition, group_name);
+			AP->addActionGroupIdToActionFlow(condition, group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(mouse_code code, std::string group_name, std::string condition)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(mouse_code code, std::string group_name, std::string condition)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(condition, group_name);
+			AP->addActionGroupIdToActionFlow(condition, group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(gamepad_code code, std::string group_name, std::string condition)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(gamepad_code code, std::string group_name, std::string condition)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(condition, group_name);
+			AP->addActionGroupIdToActionFlow(condition, group_name);
 	}
 
 
-	void ActionPolicyManager::addActionGroupID(std::string code, std::string group_name)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(std::string code, std::string group_name)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(group_name);
+			AP->addActionGroupIdToActionFlow(group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(keyboard_code code, std::string group_name)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(keyboard_code code, std::string group_name)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(group_name);
+			AP->addActionGroupIdToActionFlow(group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(mouse_code code, std::string group_name)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(mouse_code code, std::string group_name)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(group_name);
+			AP->addActionGroupIdToActionFlow(group_name);
 	}
-	void ActionPolicyManager::addActionGroupID(gamepad_code code, std::string group_name)
+	void ActionPolicyManager::addActionGroupIdToActionFlow(gamepad_code code, std::string group_name)
 	{
 		auto AP = getActionPolicy(code);
 		if (AP != nullptr)
-			AP->addActionGroupID(group_name);
+			AP->addActionGroupIdToActionFlow(group_name);
 	}
 
 	ActionPolicy* ActionPolicyManager::ActionPolicyGetter(const uint64_t& hash)

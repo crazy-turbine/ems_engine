@@ -15,10 +15,10 @@ namespace ems_engine
 
 	public:
 		void setActionFlow(const std::string& conditionID, const actionf& action_flow);
-		void addActionGroupID(const std::string& conditionID, const std::string& action_group_id);
+		void addActionGroupIdToActionFlow(const std::string& conditionID, const std::string& action_group_id);
 		
 		void setActionFlow(const actionf& action_flow);
-		void addActionGroupID(const std::string& action_group_id);
+		void addActionGroupIdToActionFlow(const std::string& action_group_id);
 
 		void setConditionSelector(std::function<std::string()> condition_selector);
 		

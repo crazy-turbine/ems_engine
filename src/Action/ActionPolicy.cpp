@@ -8,7 +8,7 @@ namespace ems_engine
 	{
 		ActionExecuteMap.insert_or_assign(conditionID, action_flow);
 	}
-	void ActionPolicy::addActionGroupID(const std::string& conditionID, const std::string& action_group_id)
+	void ActionPolicy::addActionGroupIdToActionFlow(const std::string& conditionID, const std::string& action_group_id)
 	{
 		auto [it, inserted] = ActionExecuteMap.try_emplace(conditionID);
 		it->second.push_back(action_group_id);
@@ -17,9 +17,9 @@ namespace ems_engine
 	{
 		setActionFlow("", action_flow);
 	}
-	void ActionPolicy::addActionGroupID(const std::string& action_group_id)
+	void ActionPolicy::addActionGroupIdToActionFlow(const std::string& action_group_id)
 	{
-		addActionGroupID("", action_group_id);
+		addActionGroupIdToActionFlow("", action_group_id);
 	}
 
 	void ActionPolicy::setConditionSelector(std::function<std::string()> condition_selector)

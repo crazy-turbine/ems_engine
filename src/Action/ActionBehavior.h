@@ -26,7 +26,7 @@ namespace ems_engine
 
 		//void button_update();
 
-		void setActionGroup(std::string group_name, std::function<void()> group_function);
+		void setActionGroup(std::string action_group_id, std::function<void()> group_function);
 
 		
 

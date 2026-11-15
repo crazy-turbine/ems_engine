@@ -10,6 +10,7 @@
 #include "Input/InputManager.h"
 #include "Common/Event.h"
 #include "include/ems_engine/SceneAPI.h"
+#include "include/ems_engine/ActionAPI.h"
 #include <SDL3/SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL3/SDL.h>
@@ -66,7 +67,7 @@ namespace ems_engine
 		if (!set_cursor())
 			return false;
 
-		render_sys = std::make_unique<Render>("A Day of Feb", windowWidth, windowHeight);
+		render_sys = std::make_unique<Render>("ems_engine", windowWidth, windowHeight);
 		render_mgr = std::make_unique<RenderManager>();
 		ap_mgr = std::make_unique<ActionPolicyManager>();
 		button_def = std::make_unique<ActionBehavior>(ap_mgr.get());
@@ -78,6 +79,7 @@ namespace ems_engine
 
 
 		ui_scene_api_ = std::make_unique<SceneAPI>(ui_mgr.get());
+		action_api_ = std::make_unique<ActionAPI>(ap_mgr.get(),button_def.get());
 
 		sound_sys = std::make_unique<audio>();
 		sound_sys->initAudio();

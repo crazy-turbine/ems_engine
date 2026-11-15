@@ -31,15 +31,15 @@ namespace ems_engine
 		void setConditionSelector(mouse_code code, std::function<std::string()> selector);
 		void setConditionSelector(gamepad_code code, std::function<std::string()> selector);
 
-		void addActionGroupID(std::string code, std::string action_group_id, std::string condition);
-		void addActionGroupID(keyboard_code code, std::string action_group_id, std::string condition);
-		void addActionGroupID(mouse_code code, std::string action_group_id, std::string condition);
-		void addActionGroupID(gamepad_code code, std::string action_group_id, std::string condition);
+		void addActionGroupIdToActionFlow(std::string code, std::string action_group_id, std::string condition);
+		void addActionGroupIdToActionFlow(keyboard_code code, std::string action_group_id, std::string condition);
+		void addActionGroupIdToActionFlow(mouse_code code, std::string action_group_id, std::string condition);
+		void addActionGroupIdToActionFlow(gamepad_code code, std::string action_group_id, std::string condition);
 		
-		void addActionGroupID(std::string code, std::string action_group_id);
-		void addActionGroupID(keyboard_code code, std::string action_group_id);
-		void addActionGroupID(mouse_code code, std::string action_group_id);
-		void addActionGroupID(gamepad_code code, std::string action_group_id);
+		void addActionGroupIdToActionFlow(std::string code, std::string action_group_id);
+		void addActionGroupIdToActionFlow(keyboard_code code, std::string action_group_id);
+		void addActionGroupIdToActionFlow(mouse_code code, std::string action_group_id);
+		void addActionGroupIdToActionFlow(gamepad_code code, std::string action_group_id);
 
 
 	private:

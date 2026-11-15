@@ -28,8 +28,8 @@ namespace ems_engine
 		bool init(std::function<void(Core*)> custom_init = {});
 		void run(std::function<bool(Core*)> custom_update = {});
 
-		void setActionGroup(std::string group_name, std::function<void()> group_function);
-		ActionPolicyManager* getActionPolicyManager();
+		//void setActionGroup(std::string action_group_id, std::function<void()> group_function);
+		//ActionPolicyManager* getActionPolicyManager();
 		
 
 		const EngineState& getEngineConfig();
