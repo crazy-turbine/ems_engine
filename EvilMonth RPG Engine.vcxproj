@@ -29,10 +29,9 @@
     <ClCompile Include="src\Common\idConverter.cpp" />
     <ClCompile Include="src\Common\JsonValue.cpp" />
     <ClCompile Include="src\Object\animationManager.cpp" />
-    <ClCompile Include="src\Object\Create.cpp" />
+    <ClCompile Include="src\Object\ObjectFactory.cpp" />
     <ClCompile Include="src\Object\Entity.cpp" />
     <ClCompile Include="src\Object\Object.cpp" />
-    <ClCompile Include="src\Object\ObjectFactory.cpp" />
     <ClCompile Include="src\Object\Sprite.cpp" />
     <ClCompile Include="src\Object\TextureObject.cpp" />
     <ClCompile Include="src\Object\ttf.cpp" />
@@ -72,10 +71,9 @@
     <ClInclude Include="src\Common\struct.h" />
     <ClInclude Include="src\Common\toHash.h" />
     <ClInclude Include="src\Object\animationManager.h" />
-    <ClInclude Include="src\Object\Create.h" />
+    <ClInclude Include="src\Object\ObjectFactory.h" />
     <ClInclude Include="src\Object\Entity.h" />
     <ClInclude Include="include\ems_engine\Object\Object.h" />
-    <ClInclude Include="src\Object\ObjectFactory.h" />
     <ClInclude Include="src\Object\Sprite.h" />
     <ClInclude Include="include\ems_engine\Object\TextureObject.h" />
     <ClInclude Include="src\Object\ttf.h" />

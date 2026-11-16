@@ -14,6 +14,7 @@ namespace ems_engine
 		bool fullscreen = true;
 		bool mouseGrab = true;
 		std::string Language = "no";
+		std::string base_path = "";
 		float volume = 0.0f;
 	};
 	struct Position

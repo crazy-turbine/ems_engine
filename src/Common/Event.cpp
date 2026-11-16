@@ -1,7 +1,6 @@
 #include "src/Resource/jsonManager.h"
 #include "Event.h"
 #include "src/Object/entity.h"
-#include "src/Object/Create.h"
 #include "src/Output/RenderManager.h"
 #include "src/Output/Audio.h"
 #include <iostream>

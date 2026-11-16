@@ -51,7 +51,7 @@
     <ClCompile Include="src\Scene\SceneManager.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\Create.cpp">
+    <ClCompile Include="src\Object\ObjectFactory.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Object\animationManager.cpp">
@@ -94,9 +94,6 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Object\UIElement\UIElement.cpp">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Object\ObjectFactory.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
     <ClCompile Include="src\Object\UIElement\UIButton.cpp">
@@ -167,7 +164,7 @@
     <ClInclude Include="src\Scene\SceneManager.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\Create.h">
+    <ClInclude Include="src\Object\ObjectFactory.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="src\Object\animationManager.h">
@@ -213,9 +210,6 @@
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="include\ems_engine\Object\UIElement\UIElement.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Object\ObjectFactory.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
     <ClInclude Include="include\ems_engine\Object\UIElement\UIButton.h">

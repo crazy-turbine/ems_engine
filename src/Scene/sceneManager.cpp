@@ -1,14 +1,18 @@
 #include "sceneManager.h"
 #include <iostream>
-#include "Object/Create.h"
+#include <stdexcept>
+#include "Object/ObjectFactory.h"
 //#include "third_party/magic_enum/magic_enum.hpp"
 
 namespace ems_engine
 {
-	SceneManager::SceneManager(ResourceManager* rcm, Render* render)
+	SceneManager::SceneManager(ResourceManager* rcm, Render* render ,std::string base_path)
 	{
-		rc_mgr = rcm;
-		render_sys = render;
+		if (rcm == nullptr)
+			throw std::invalid_argument("ResourceManager is nullptr!");
+		if (render == nullptr)
+			throw std::invalid_argument("Render is nullptr!");
+		obj_factory = std::make_unique<ObjectFactory>(rcm, render, base_path);
 	}
 	Scene* SceneManager::getCurrentScene()
 	{
@@ -53,8 +57,14 @@ namespace ems_engine
 			std::cout << "[Create]:Create Scene:" << sceneID << std::endl;
 			SceneMap.emplace(currentScene, std::make_unique<Scene>());
 		}
-		createEntity(*this, *rc_mgr, *render_sys);
-		createTEXT(*this, "zh_tw", rc_mgr);
+		//createEntity(*this, *rc_mgr, *render_sys);
+		obj_factory->createSceneObject(getScene(sceneID), sceneID);
+		/*obj_loader->loadSceneObject([&](std::string obj_type)
+			{
+				
+			});*/
+
+		//createTEXT(*this, "zh_tw", rc_mgr);
 	}
 	void SceneManager::UpdateScene()
 	{

@@ -66,13 +66,15 @@ namespace ems_engine
 			return false;*/
 		if (!set_cursor())
 			return false;
-
+		
+		set_config();
+		
 		render_sys = std::make_unique<Render>("ems_engine", windowWidth, windowHeight);
 		render_mgr = std::make_unique<RenderManager>();
 		ap_mgr = std::make_unique<ActionPolicyManager>();
 		button_def = std::make_unique<ActionBehavior>(ap_mgr.get());
 		rc_mgr = std::make_unique<ResourceManager>();
-		ui_mgr = std::make_unique<SceneManager>(rc_mgr.get(), render_sys.get());
+		ui_mgr = std::make_unique<SceneManager>(rc_mgr.get(), render_sys.get(), EngineConfig.base_path);
 		input_mgr = std::make_unique<InputManager>(button_def.get(), ui_mgr.get(), render_sys.get());
 		
 		//id_converter = std::make_unique<ID_Converter>();
@@ -90,7 +92,7 @@ namespace ems_engine
 		//ui_mgr->setTargetSceneID("home");
 		//ui_mgr->UpdateScene();
 
-		set_config();
+		
 
 		if (custom_init)
 		{
@@ -239,6 +241,9 @@ namespace ems_engine
 
 	void Core::set_config()
 	{
+		EngineConfig.base_path = SDL_GetBasePath();
+
+
 		std::string lang;
 		JsonManager::addJson("res/setting/setting.json");
 		readJson(JsonManager::getJson("res/setting/setting.json"), "/language"_json_pointer, lang);
