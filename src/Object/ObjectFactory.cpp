@@ -49,6 +49,7 @@ namespace ems_engine
 			readJson(data, "/type"_json_pointer, obj_type);
 			std::vector<const json*> obj_data_list;
 			std::unordered_set<std::string> extends_list;
+			extends_list.insert(id);
 			const json* target_data = &data;
 			obj_data_list.push_back(target_data);
 			
@@ -155,7 +156,7 @@ namespace ems_engine
 		if (assigned_keys.count("y") == 0)
 		{
 			readJson(*obj_data, "/y"_json_pointer, y);
-			obj->setPosX(y);
+			obj->setPosY(y);
 			assigned_keys.insert("y");
 		}
 		if (assigned_keys.count("w") == 0)
@@ -192,7 +193,7 @@ namespace ems_engine
 	{
 
 	}
-	void ObjectFactory::setUISlider(UISlider* obj, const json* const const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUISlider(UISlider* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
 	{
 
 	}

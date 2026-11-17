@@ -45,7 +45,7 @@ namespace ems_engine
 		void setUIStateElement(UIStateElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
 		void setUIButton(UIButton* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
 		void setUICheckBox(UICheckBox* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setUISlider(UISlider* obj, const json* const const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUISlider(UISlider* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
 
 		ResourceManager* rc_mgr_;
 		Render* render_sys_;
