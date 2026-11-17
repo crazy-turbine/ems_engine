@@ -10,7 +10,11 @@ namespace ems_engine
 	public:
 		virtual ~Object() = default;
 		void setPos(float x, float y);
+		void setPosX(float x);
+		void setPosY(float y);
 		void setSize(float w, float h);
+		void setSizeW(float w);
+		void setSizeH(float h);
 		void setRect(float x, float y, float w, float h);
 
 		void setDebugDrawEnabled(bool debug_mode);

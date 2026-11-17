@@ -1,9 +1,10 @@
 #include "ObjectFactory.h"
 
+#include <vector>
 #include <filesystem>
 
 //#include "src/Object/Entity.h"
-#include "src/Resource/JsonFileIO.h"
+
 #define MAGIC_ENUM_RANGE_MAX 2000
 #include "src/Scene/sceneManager.h"
 #include "third_party/magic_enum/magic_enum.hpp"
@@ -35,17 +36,169 @@ namespace ems_engine
 
 	void ObjectFactory::createSceneObject(Scene* scene, std::string sceneID)
 	{
-		json config;
+		json scene_data;
 		std::string filename = sceneID + ".json";
 		std::filesystem::path path = base_path_;
 		path = path / "scene" / filename;
-		openJson(config, path.string());
-		for (const auto& item : config)
+		openJson(scene_data, path.string());
+		const json& objs_data = scene_data.at("/objects"_json_pointer);
+		for (const auto& [id,data] : objs_data.items())
 		{
-			std::string extends = "default";
-			//未完成
+			std::string extends = "null";
+			std::string obj_type = "null";
+			readJson(data, "/type"_json_pointer, obj_type);
+			std::vector<const json*> obj_data_list;
+			std::unordered_set<std::string> extends_list;
+			const json* target_data = &data;
+			obj_data_list.push_back(target_data);
+			
+			while (obj_type == "null")
+			{
+				extends = "null";
+				readJson(*target_data, "/extends"_json_pointer, extends);
+				if (extends != "null")
+				{
+					if (extends_list.count(extends))
+					{
+						std::cout << "[ERROR]: Circular object inheritance detected!" << std::endl;
+						std::cout << "[ERROR-INFO]: ext/obj_id/scene:" << extends << "/" << id << "/" << sceneID << std::endl;
+						break;
+					}
+					extends_list.insert(extends);
+					if (objs_data.contains(extends))
+					{
+						target_data = &objs_data.at(extends);
+						obj_data_list.push_back(target_data);
+						readJson(*target_data, "/type"_json_pointer, obj_type);
+					}
+					else
+					{
+						std::cout << "[ERROR]: Extends not found!" << std::endl;
+						std::cout << "[ERROR-INFO]: ext/obj_id/scene:" << extends << "/" << id << "/" << sceneID << std::endl;
+						break;
+					}
+				}
+				else
+				{
+					std::cout << "[ERROR]: Object type undefined!" << std::endl;
+					std::cout << "[ERROR-INFO]: obj_id/scene:" << id << "/" << sceneID << std::endl;
+					break;
+				}
+			}
+
+			if (obj_type == "null")
+			{
+				continue;
+			}
+
+			std::unordered_set<std::string> assigned_keys;
+
+			//UI
+			if (obj_type == "UIElement")
+			{
+				auto obj = scene->addObject<UIElement>(id);
+				for (const auto obj_data : obj_data_list)
+				{
+					setUIElement(obj, obj_data, assigned_keys);
+				}
+				continue;
+			}
+			if (obj_type == "UIStateElement")
+			{
+				auto obj = scene->addObject<UIStateElement>(id);
+				for (const auto obj_data : obj_data_list)
+				{
+					setUIStateElement(obj, obj_data, assigned_keys);
+				}
+				continue;
+			}
+			if (obj_type == "UIButton")
+			{
+				auto obj = scene->addObject<UIButton>(id);
+				for (const auto obj_data : obj_data_list)
+				{
+					setUIButton(obj, obj_data, assigned_keys);
+				}
+				continue;
+			}
+			if (obj_type == "UICheckBox")
+			{
+				auto obj = scene->addObject<UICheckBox>(id);
+				for (const auto obj_data : obj_data_list)
+				{
+					setUICheckBox(obj, obj_data, assigned_keys);
+				}
+				continue;
+			}
+			if (obj_type == "UISlider")
+			{
+				auto obj = scene->addObject<UISlider>(id);
+				for (const auto obj_data : obj_data_list)
+				{
+					setUISlider(obj, obj_data, assigned_keys);
+				}
+				continue;
+			}
+			std::cout << "[ERROR]: Object type not found!" << std::endl;
 		}
 	}
+
+	void ObjectFactory::setObject(Object* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+		float x=0, y=0, w=0, h=0;
+		if(assigned_keys.count("x") == 0)
+		{
+			readJson(*obj_data, "/x"_json_pointer, x);
+			obj->setPosX(x);
+			assigned_keys.insert("x");
+		}
+		if (assigned_keys.count("y") == 0)
+		{
+			readJson(*obj_data, "/y"_json_pointer, y);
+			obj->setPosX(y);
+			assigned_keys.insert("y");
+		}
+		if (assigned_keys.count("w") == 0)
+		{
+			readJson(*obj_data, "/w"_json_pointer, w);
+			obj->setSizeW(w);
+			assigned_keys.insert("w");
+		}
+		if (assigned_keys.count("h") == 0)
+		{
+			readJson(*obj_data, "/h"_json_pointer, h);
+			obj->setSizeH(h);
+			assigned_keys.insert("h");
+		}
+	}
+	void ObjectFactory::setTextureObject(TextureObject* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+	//UI
+	void ObjectFactory::setUIElement(UIElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+	void ObjectFactory::setUIStateElement(UIStateElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+	void ObjectFactory::setUIButton(UIButton* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+	void ObjectFactory::setUICheckBox(UICheckBox* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+	void ObjectFactory::setUISlider(UISlider* obj, const json* const const obj_data, std::unordered_set<std::string>& assigned_keys)
+	{
+
+	}
+
+
+
 
 	void createEntity(SceneManager& Manager, ResourceManager& rc_mgr, Render& window)
 	{

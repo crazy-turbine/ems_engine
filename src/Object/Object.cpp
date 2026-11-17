@@ -15,9 +15,27 @@ namespace ems_engine
 		rect.y = y;
 		onPosChanged();
 	}
+	void Object::setPosX(float x)
+	{
+		rect.x = x;
+		onPosChanged();
+	}
+	void Object::setPosY(float y)
+	{
+		rect.y = y;
+		onPosChanged();
+	}
 	void Object::setSize(float w, float h)
 	{
 		rect.w = w;
+		rect.h = h;
+	}
+	void Object::setSizeW(float w)
+	{
+		rect.w = w;
+	}
+	void Object::setSizeH(float h)
+	{
 		rect.h = h;
 	}
 	void Object::setRect(float x, float y, float w, float h)

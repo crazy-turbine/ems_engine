@@ -1,7 +1,8 @@
 #pragma once
 #include <functional>
 #include <string>
-
+#include <unordered_set>
+#include "src/Resource/JsonFileIO.h"
 
 //111110110100000 1000001001110010 100111001010110 100111001010110 1001100100000101 100111001111110
 //上面這段保佑這個專案乖乖，勿刪
@@ -34,14 +35,17 @@ namespace ems_engine
 		ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::string base_path);
 		void createSceneObject(Scene* scene,std::string sceneID);
 	private:
+		std::string checkExtends(json objs_data, std::string target);
 
-		void createObject(Object* object);
-		void createObject(TextureObject* object);
-		void createObject(UIElement* object);
-		void createObject(UIStateElement* object);
-		void createObject(UIButton* object);
-		void createObject(UICheckBox* object);
-		void createObject(UISlider* object);
+
+		void setObject(Object* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setTextureObject(TextureObject* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		//UI
+		void setUIElement(UIElement* obj,const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUIStateElement(UIStateElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUIButton(UIButton* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUICheckBox(UICheckBox* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUISlider(UISlider* obj, const json* const const obj_data, std::unordered_set<std::string>& assigned_keys);
 
 		ResourceManager* rc_mgr_;
 		Render* render_sys_;
