@@ -40,7 +40,8 @@ namespace ems_engine
 		std::string filename = sceneID + ".json";
 		std::filesystem::path path = base_path_;
 		path = path / "scene" / filename;
-		openJson(scene_data, path.string());
+		if (!openJson(scene_data, path.string()))
+			return;
 		const json& objs_data = scene_data.at("/objects"_json_pointer);
 		for (const auto& [id,data] : objs_data.items())
 		{
@@ -100,7 +101,7 @@ namespace ems_engine
 				auto obj = scene->addObject<UIElement>(id);
 				for (const auto obj_data : obj_data_list)
 				{
-					setUIElement(obj, obj_data, assigned_keys);
+					setUIElement(obj, obj_data, assigned_keys, sceneID);
 				}
 				continue;
 			}
@@ -109,7 +110,7 @@ namespace ems_engine
 				auto obj = scene->addObject<UIStateElement>(id);
 				for (const auto obj_data : obj_data_list)
 				{
-					setUIStateElement(obj, obj_data, assigned_keys);
+					setUIStateElement(obj, obj_data, assigned_keys, sceneID);
 				}
 				continue;
 			}
@@ -118,7 +119,7 @@ namespace ems_engine
 				auto obj = scene->addObject<UIButton>(id);
 				for (const auto obj_data : obj_data_list)
 				{
-					setUIButton(obj, obj_data, assigned_keys);
+					setUIButton(obj, obj_data, assigned_keys, sceneID);
 				}
 				continue;
 			}
@@ -127,7 +128,7 @@ namespace ems_engine
 				auto obj = scene->addObject<UICheckBox>(id);
 				for (const auto obj_data : obj_data_list)
 				{
-					setUICheckBox(obj, obj_data, assigned_keys);
+					setUICheckBox(obj, obj_data, assigned_keys, sceneID);
 				}
 				continue;
 			}
@@ -136,7 +137,7 @@ namespace ems_engine
 				auto obj = scene->addObject<UISlider>(id);
 				for (const auto obj_data : obj_data_list)
 				{
-					setUISlider(obj, obj_data, assigned_keys);
+					setUISlider(obj, obj_data, assigned_keys, sceneID);
 				}
 				continue;
 			}
@@ -144,58 +145,119 @@ namespace ems_engine
 		}
 	}
 
-	void ObjectFactory::setObject(Object* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+
+
+
+
+	void ObjectFactory::setObject(Object* obj, const json* const obj_data, string_set& assigned_keys)
 	{
 		float x=0, y=0, w=0, h=0;
-		if(assigned_keys.count("x") == 0)
-		{
-			readJson(*obj_data, "/x"_json_pointer, x);
+		if(assignJsonValue(x, "x", obj_data, assigned_keys))
 			obj->setPosX(x);
-			assigned_keys.insert("x");
-		}
-		if (assigned_keys.count("y") == 0)
-		{
-			readJson(*obj_data, "/y"_json_pointer, y);
+		if(assignJsonValue(y, "y", obj_data, assigned_keys))
 			obj->setPosY(y);
-			assigned_keys.insert("y");
-		}
-		if (assigned_keys.count("w") == 0)
-		{
-			readJson(*obj_data, "/w"_json_pointer, w);
+		if(assignJsonValue(w, "w", obj_data, assigned_keys))
 			obj->setSizeW(w);
-			assigned_keys.insert("w");
-		}
-		if (assigned_keys.count("h") == 0)
-		{
-			readJson(*obj_data, "/h"_json_pointer, h);
+		if(assignJsonValue(h, "h", obj_data, assigned_keys))
 			obj->setSizeH(h);
-			assigned_keys.insert("h");
-		}
-	}
-	void ObjectFactory::setTextureObject(TextureObject* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
-	{
 
+	}
+	void ObjectFactory::setTextureObject(TextureObject* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
+	{
+		setObject(obj, obj_data, assigned_keys);
+		if (assigned_keys.count("path") == 0)
+		{
+			if (obj_data->contains("path"))
+			{
+				for (const auto& [index_s,path] : obj_data->at("path").items())
+				{
+					int index = std::stoi(index_s);
+					obj->setCurrentTextureID(rc_mgr_->loadTexture(path, scene_id, *render_sys_), index);
+				}
+				assigned_keys.insert("path");
+			}
+		}
+
+		bool visible = true;
+		int alpha = 255;
+		std::string layerID = "null";
+		int layer = 0;
+		if (assignJsonValue(visible, "visible", obj_data, assigned_keys))
+			obj->setVisible(visible);
+		if (assignJsonValue(alpha, "alpha", obj_data, assigned_keys))
+			obj->setAlpha(alpha);
+		if (assignJsonValue(layer, "layer", obj_data, assigned_keys))
+			obj->setLayer(layer);
+		else if (assigned_keys.count("layer") == 0)
+		{
+			if (readJson(*obj_data, "/layerID"_json_pointer, layerID))
+			{
+				auto layer_enum = magic_enum::enum_cast<layer_ID>(layerID);
+				if (layer_enum.has_value())
+				{
+					layer = static_cast<int>(layer_enum.value());
+					obj->setLayer(layer);
+					assigned_keys.insert("layer");
+				}
+				else
+				{
+					std::cout << "[ERROR]:LayerID undefined - " << layerID << std::endl;
+				}
+			}
+		}
+		
 	}
 	//UI
-	void ObjectFactory::setUIElement(UIElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUIElement(UIElement* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
 	{
-
+		setTextureObject(obj, obj_data, assigned_keys, scene_id);
 	}
-	void ObjectFactory::setUIStateElement(UIStateElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUIStateElement(UIStateElement* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
 	{
-
+		setUIElement(obj, obj_data, assigned_keys, scene_id);
+		json json_vg_data;
+		float fps = 1.0f;
+		std::string visual_state = "null";
+		if (readJson(*obj_data, "/visual_group"_json_pointer, json_vg_data))
+		{
+			for (const auto& [id, data] : json_vg_data.items())
+			{
+				std::vector<std::string> visual_group;
+				for (const auto& texture : data)
+				{
+					visual_group.push_back(texture);
+				}
+				obj->setVisualGroup(visual_group, id);
+			}
+			assigned_keys.insert("visual_group");
+		}
+		if (assignJsonValue(visual_state, "visual_state", obj_data, assigned_keys))
+			obj->setCurrentVisualState(visual_state);
+		if (assignJsonValue(fps, "fps", obj_data, assigned_keys))
+			obj->setFps(fps);
 	}
-	void ObjectFactory::setUIButton(UIButton* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUIButton(UIButton* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
 	{
-
+		setUIStateElement(obj, obj_data, assigned_keys, scene_id);
+		std::string default_state = "null", hover_state = "null";
+		if (assignJsonValue(default_state, "default_state", obj_data, assigned_keys))
+			obj->setDefaultState(default_state);
+		if (assignJsonValue(hover_state, "hover_state", obj_data, assigned_keys))
+			obj->setHoverState(hover_state);
 	}
-	void ObjectFactory::setUICheckBox(UICheckBox* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUICheckBox(UICheckBox* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
 	{
-
+		setUIButton(obj, obj_data, assigned_keys, scene_id);
+		std::string checked_state = "null", checked_hover_state = "null";
+		if (assignJsonValue(checked_state, "checked_state", obj_data, assigned_keys))
+			obj->setCheckedState(checked_state);
+		if (assignJsonValue(checked_hover_state, "checked_hover_state", obj_data, assigned_keys))
+			obj->setCheckedHoverState(checked_hover_state);
 	}
-	void ObjectFactory::setUISlider(UISlider* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys)
+	void ObjectFactory::setUISlider(UISlider* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id)
 	{
-
+		setUIButton(obj, obj_data, assigned_keys, scene_id);
+		//UISlider實作較為複雜，未來再補充實作。
 	}
 
 

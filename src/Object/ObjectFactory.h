@@ -28,6 +28,7 @@ namespace ems_engine
 	class UICheckBox;
 	class UISlider;
 
+	using string_set = std::unordered_set<std::string>;
 
 	class ObjectFactory
 	{
@@ -35,17 +36,29 @@ namespace ems_engine
 		ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::string base_path);
 		void createSceneObject(Scene* scene,std::string sceneID);
 	private:
-		std::string checkExtends(json objs_data, std::string target);
+		template <typename T>
+		bool assignJsonValue(T& value, std::string key, const json* const obj_data, string_set& assigned_keys)
+		{
+			json::json_pointer js_ptr(key);
+			if (assigned_keys.count(key) == 0)
+			{
+				if (readJson(*obj_data, js_ptr, value))
+				{
+					assigned_keys.insert(key);
+					return true;
+				}
+			}
+			return false;
+		}
 
-
-		void setObject(Object* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setTextureObject(TextureObject* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setObject(Object* obj, const json* const obj_data, string_set& assigned_keys);
+		void setTextureObject(TextureObject* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id);
 		//UI
-		void setUIElement(UIElement* obj,const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setUIStateElement(UIStateElement* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setUIButton(UIButton* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setUICheckBox(UICheckBox* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
-		void setUISlider(UISlider* obj, const json* const obj_data, std::unordered_set<std::string>& assigned_keys);
+		void setUIElement(UIElement* obj,const json* const obj_data, string_set& assigned_keys, std::string scene_id);
+		void setUIStateElement(UIStateElement* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id);
+		void setUIButton(UIButton* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id);
+		void setUICheckBox(UICheckBox* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id);
+		void setUISlider(UISlider* obj, const json* const obj_data, string_set& assigned_keys, std::string scene_id);
 
 		ResourceManager* rc_mgr_;
 		Render* render_sys_;
