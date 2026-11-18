@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <string>
 #include <memory>
+#include <filesystem>
 #include "scene.h"
 
 namespace ems_engine
@@ -14,7 +15,7 @@ namespace ems_engine
 	class SceneManager
 	{
 	public:
-		SceneManager(ResourceManager* rcm, Render* render, std::string base_path);
+		SceneManager(ResourceManager* rcm, Render* render, std::filesystem::path base_path);
 		~SceneManager();
 		Scene* getCurrentScene();
 		Scene* getScene(std::string sceneID);

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <filesystem>
 
 namespace ems_engine
 {
@@ -14,7 +15,7 @@ namespace ems_engine
 		bool fullscreen = true;
 		bool mouseGrab = true;
 		std::string Language = "no";
-		std::string base_path = "";
+		std::filesystem::path base_path = "";
 		float volume = 0.0f;
 	};
 	struct Position

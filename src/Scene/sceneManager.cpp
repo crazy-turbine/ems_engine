@@ -6,13 +6,17 @@
 
 namespace ems_engine
 {
-	SceneManager::SceneManager(ResourceManager* rcm, Render* render ,std::string base_path)
+	SceneManager::SceneManager(ResourceManager* rcm, Render* render , std::filesystem::path base_path)
 	{
 		if (rcm == nullptr)
 			throw std::invalid_argument("ResourceManager is nullptr!");
 		if (render == nullptr)
 			throw std::invalid_argument("Render is nullptr!");
 		obj_factory = std::make_unique<ObjectFactory>(rcm, render, base_path);
+	}
+	SceneManager::~SceneManager()
+	{
+
 	}
 	Scene* SceneManager::getCurrentScene()
 	{

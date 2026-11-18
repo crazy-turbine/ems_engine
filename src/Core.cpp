@@ -3,7 +3,7 @@
 #include "Output/Render.h"
 #include "Output/RenderManager.h"
 #include "Resource/jsonManager.h"
-#include "Scene/sceneManager.h"
+#include "Scene/SceneManager.h"
 #include "Action/ActionBehavior.h"
 #include "Action/ActionPolicyManager.h"
 #include "Resource/ResourceManager.h"
@@ -15,6 +15,7 @@
 #include <SDL_image.h>
 #include <SDL3/SDL.h>
 #include <iostream>
+#include <filesystem>
 namespace ems_engine
 {
 
@@ -241,7 +242,7 @@ namespace ems_engine
 
 	void Core::set_config()
 	{
-		EngineConfig.base_path = SDL_GetBasePath();
+		EngineConfig.base_path = std::filesystem::current_path();
 
 
 		std::string lang;

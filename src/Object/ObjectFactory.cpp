@@ -25,7 +25,7 @@ namespace ems_engine
 
 	//std::map<std::string, Sprite*> SpriteMap;
 
-	ObjectFactory::ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::string base_path)
+	ObjectFactory::ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::filesystem::path base_path)
 		:rc_mgr_(rc_mgr),render_sys_(render_sys),base_path_(base_path)
 	{
 		if (rc_mgr == nullptr)
@@ -39,7 +39,7 @@ namespace ems_engine
 		json scene_data;
 		std::string filename = sceneID + ".json";
 		std::filesystem::path path = base_path_;
-		path = path / "scene" / filename;
+		path = path / "res" / "scene" / filename;
 		if (!openJson(scene_data, path.string()))
 			return;
 		const json& objs_data = scene_data.at("/objects"_json_pointer);
@@ -262,7 +262,7 @@ namespace ems_engine
 
 
 
-
+	/*
 	void createEntity(SceneManager& Manager, ResourceManager& rc_mgr, Render& window)
 	{
 		json config;
@@ -404,7 +404,7 @@ namespace ems_engine
 			std::cout << "[Error]:Entity Type Not Found!" << std::endl;
 			//Manager.getCurrentScene()->addObject<>(EntityType, entityID, configValue, window);
 		}
-	}
+	}*/
 
 	void createTEXT(SceneManager& Manager, std::string lang, ResourceManager* rc_mgr)
 	{

@@ -33,13 +33,13 @@ namespace ems_engine
 	class ObjectFactory
 	{
 	public:
-		ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::string base_path);
+		ObjectFactory(ResourceManager* rc_mgr, Render* render_sys, std::filesystem::path base_path);
 		void createSceneObject(Scene* scene,std::string sceneID);
 	private:
 		template <typename T>
 		bool assignJsonValue(T& value, std::string key, const json* const obj_data, string_set& assigned_keys)
 		{
-			json::json_pointer js_ptr(key);
+			json::json_pointer js_ptr("/" + key);
 			if (assigned_keys.count(key) == 0)
 			{
 				if (readJson(*obj_data, js_ptr, value))
@@ -62,11 +62,11 @@ namespace ems_engine
 
 		ResourceManager* rc_mgr_;
 		Render* render_sys_;
-		std::string base_path_ = "";
+		std::filesystem::path base_path_;
 	};
 
 
-	void createEntity(SceneManager& Manager, ResourceManager& rc_mgr, Render& window);
+	//void createEntity(SceneManager& Manager, ResourceManager& rc_mgr, Render& window);
 	void createTEXT(SceneManager& Manager, std::string lang, ResourceManager* rc_mgr);
 	//void createSprite(Render& window, int w, int h);
 	void createMap(Render& window, int w, int h);
